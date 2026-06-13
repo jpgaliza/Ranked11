@@ -1,0 +1,230 @@
+{
+  "common": {
+    "appName": "Ranked11",
+    "dailyChallenge": "Daily Challenge",
+    "categories": "Categories",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "play": "Play",
+    "retry": "Retry",
+    "home": "Home",
+    "footer": "Ranked11 — FIFA World Cup ranking trivia. All statistics through Qatar 2022."
+  },
+  "home": {
+    "metaTitle": "Ranked11 — Daily World Cup Challenge",
+    "metaDescription": "Test your FIFA World Cup knowledge with daily Top 10 ranking challenges.",
+    "dailyChallenge": "Daily Challenge",
+    "heroTitle": "Today's World Cup Challenge",
+    "heroDescription": "Rank the Top 10. One category. Same challenge for everyone. New puzzle every 24 hours.",
+    "todaysCategory": "Today's Category",
+    "categoryHidden": "Start the challenge to reveal",
+    "nextChallenge": "Next challenge in",
+    "startChallenge": "Start Challenge",
+    "exploreCategories": "Explore All Categories",
+    "exploreDescription": "Practice with 20 World Cup ranking categories at your own pace.",
+    "browseCategories": "Browse Categories"
+  },
+  "categoriesPage": {
+    "metaTitle": "Categories — Ranked11",
+    "metaDescription": "Browse all 20 FIFA World Cup ranking categories.",
+    "title": "All Categories",
+    "description": "Choose a category and test your World Cup knowledge."
+  },
+  "game": {
+    "dragMode": "Drag & Drop",
+    "selectMode": "Tap to Place",
+    "interactionMode": "Interaction mode",
+    "timer": "Timer",
+    "hardMode": "Hard Mode (60s)",
+    "normalMode": "Normal Mode",
+    "difficulty": "Difficulty",
+    "availableItems": "Available Items",
+    "allPlaced": "All items placed",
+    "rankingSlots": "Ranking positions",
+    "selectHint": "Select an item, then tap a position to place it.",
+    "dailyReveal": "Daily Challenge",
+    "dailyRevealHint": "Ready to test your World Cup knowledge?",
+    "startChallenge": "Reveal & Start",
+    "confirmSubmit": "Submit incomplete ranking?",
+    "confirmSubmitHint": "You have {count} empty slots. Unplaced items will score 0 points.",
+    "replayNotice": "Replay — score not ranked"
+  },
+  "results": {
+    "yourScore": "Your Score",
+    "perfect": "Perfect Score!",
+    "breakdown": "Score breakdown",
+    "complete": "Challenge Complete!",
+    "dailyResult": "Daily Challenge",
+    "categoryResult": "Category Mode",
+    "playAgain": "Play Again",
+    "retryCategory": "Try Again",
+    "moreCategories": "More Categories"
+  },
+  "categories": {
+    "teamsMostTitles": {
+      "title": "Teams with Most World Cup Titles",
+      "description": "Rank the national teams by FIFA World Cup championships won."
+    },
+    "teamsMostAppearances": {
+      "title": "Teams with Most World Cup Appearances",
+      "description": "Rank teams by total World Cup tournament appearances."
+    },
+    "teamsMostWins": {
+      "title": "Teams with Most World Cup Wins",
+      "description": "Rank national teams by total World Cup match victories."
+    },
+    "teamsMostGoalsScored": {
+      "title": "Teams with Most World Cup Goals Scored",
+      "description": "Rank teams by total goals scored in World Cup history."
+    },
+    "teamsMostGoalsConceded": {
+      "title": "Teams that Conceded the Most Goals",
+      "description": "Rank teams by total goals conceded at the World Cup."
+    },
+    "teamsMostMatches": {
+      "title": "Teams with Most World Cup Matches Played",
+      "description": "Rank teams by total World Cup matches played."
+    },
+    "teamsMostFinalAppearances": {
+      "title": "Teams with Most World Cup Final Appearances",
+      "description": "Rank teams by appearances in World Cup finals."
+    },
+    "teamsMostSemiFinalAppearances": {
+      "title": "Teams with Most World Cup Semi-Final Appearances",
+      "description": "Rank teams by semi-final appearances at the World Cup."
+    },
+    "teamsMostGroupEliminations": {
+      "title": "Teams with Most Group Stage Eliminations",
+      "description": "Rank teams eliminated at the group stage most often."
+    },
+    "teamsMostCleanSheets": {
+      "title": "Teams with Most Clean Sheets",
+      "description": "Rank teams by World Cup clean sheets (matches without conceding)."
+    },
+    "topGoalscorers": {
+      "title": "Top World Cup Goalscorers",
+      "description": "Rank the all-time leading World Cup goal scorers."
+    },
+    "playersMostAppearances": {
+      "title": "Players with Most World Cup Appearances",
+      "description": "Rank players by total World Cup matches played."
+    },
+    "playersMostGoalsSingleCup": {
+      "title": "Players with Most Goals in a Single World Cup",
+      "description": "Rank players by goals in one World Cup tournament."
+    },
+    "playersMostWorldCups": {
+      "title": "Players with Most World Cups Played",
+      "description": "Rank players by number of World Cup tournaments played."
+    },
+    "playersMostAssists": {
+      "title": "Players with Most World Cup Assists",
+      "description": "Rank players by assists at the World Cup."
+    },
+    "playersMostCards": {
+      "title": "Players with Most World Cup Cards",
+      "description": "Rank players by yellow and red cards at the World Cup."
+    },
+    "coachesMostMatches": {
+      "title": "Coaches with Most World Cup Matches",
+      "description": "Rank coaches by World Cup matches managed."
+    },
+    "coachesMostWins": {
+      "title": "Coaches with Most World Cup Wins",
+      "description": "Rank coaches by World Cup match wins."
+    },
+    "countriesMostHosted": {
+      "title": "Countries that Hosted the Most World Cups",
+      "description": "Rank nations by times hosting the FIFA World Cup."
+    },
+    "worldCupsHighestAttendance": {
+      "title": "World Cups with Highest Attendance",
+      "description": "Rank World Cup editions by total attendance."
+    },
+    "items": {
+      "brazil": "Brazil",
+      "germany": "Germany",
+      "italy": "Italy",
+      "argentina": "Argentina",
+      "france": "France",
+      "uruguay": "Uruguay",
+      "england": "England",
+      "spain": "Spain",
+      "croatia": "Croatia",
+      "netherlands": "Netherlands",
+      "mexico": "Mexico",
+      "belgium": "Belgium",
+      "hungary": "Hungary",
+      "czechoslovakia": "Czechoslovakia",
+      "sweden": "Sweden",
+      "scotland": "Scotland",
+      "cameroon": "Cameroon",
+      "south-africa": "South Africa",
+      "honduras": "Honduras",
+      "new-zealand": "New Zealand",
+      "qatar": "Qatar",
+      "china": "China",
+      "haiti": "Haiti",
+      "canada": "Canada",
+      "switzerland": "Switzerland",
+      "miroslav-klosse": "Miroslav Klose",
+      "ronaldo": "Ronaldo",
+      "germany-muller": "Gerd Müller",
+      "pele": "Pelé",
+      "jurgen-klinsmann": "Jürgen Klinsmann",
+      "gabor-kiraly": "Gábor Király",
+      "thomas-muller": "Thomas Müller",
+      "just-fontaine": "Just Fontaine",
+      "sandor-kocsis": "Sándor Kocsis",
+      "gabriel-batistuta": "Gabriel Batistuta",
+      "lothar-matthaus": "Lothar Matthäus",
+      "mexico-antonio-carbajal": "Antonio Carbajal",
+      "gianluigi-buffon": "Gianluigi Buffon",
+      "mexico-rafael-marquez": "Rafael Márquez",
+      "mexico-andres-guardado": "Andrés Guardado",
+      "cristiano-ronaldo": "Cristiano Ronaldo",
+      "lionel-messi": "Lionel Messi",
+      "mexico-javier-hernandez": "Javier Hernández",
+      "mexico-guillermo-ochoa": "Guillermo Ochoa",
+      "mexico-hirving-lozano": "Hirving Lozano",
+      "eusebio": "Eusébio",
+      "helmut-rahn": "Helmut Rahn",
+      "geoff-hurst": "Geoff Hurst",
+      "paolo-rossi": "Paolo Rossi",
+      "diego-maradona": "Diego Maradona",
+      "david-beckham": "David Beckham",
+      "xavi": "Xavi",
+      "andres-iniesta": "Andrés Iniesta",
+      "neymar": "Neymar",
+      "kevin-de-bruyne": "Kevin De Bruyne",
+      "zinedine-zidane": "Zinedine Zidane",
+      "cameroon-rigobert-song": "Rigobert Song",
+      "pepe": "Pepe",
+      "sergio-ramos": "Sergio Ramos",
+      "gerardo-torrado": "Gerardo Torrado",
+      "patrick-vieira": "Patrick Vieira",
+      "roy-keane": "Roy Keane",
+      "carlos-sanchez": "Carlos Sánchez",
+      "helmut-schon": "Helmut Schön",
+      "carlos-alberto-parreira": "Carlos Alberto Parreira",
+      "luiz-felipe-scolari": "Luiz Felipe Scolari",
+      "mario-zagallo": "Mário Zagallo",
+      "guus-hiddink": "Guus Hiddink",
+      "carlos-bilardo": "Carlos Bilardo",
+      "jose-pekerman": "José Pekerman",
+      "marcelo-bielsa": "Marcelo Bielsa",
+      "vicente-del-bosque": "Vicente del Bosque",
+      "jupp-heynckes": "Jupp Heynckes",
+      "usa-1994": "USA 1994",
+      "germany-2006": "Germany 2006",
+      "brazil-2014": "Brazil 2014",
+      "france-1998": "France 1998",
+      "mexico-1970": "Mexico 1970",
+      "japan-korea-2002": "Japan/Korea 2002",
+      "south-africa-2010": "South Africa 2010",
+      "spain-1982": "Spain 1982",
+      "italy-1990": "Italy 1990",
+      "russia-2018": "Russia 2018"
+    }
+  }
+}

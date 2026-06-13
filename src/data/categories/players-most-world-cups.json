@@ -1,0 +1,18 @@
+{
+  "id": "players-most-world-cups",
+  "type": "player",
+  "i18nKey": "categories.playersMostWorldCups",
+  "correctOrder": ["mexico-antonio-carbajal", "lothar-matthaus", "mexico-rafael-marquez", "mexico-andres-guardado", "pele", "gianluigi-buffon", "cristiano-ronaldo", "lionel-messi", "mexico-guillermo-ochoa", "mexico-hirving-lozano"],
+  "items": {
+    "mexico-antonio-carbajal": { "id": "mexico-antonio-carbajal", "statValue": 5, "metadata": { "countryCode": "MX" } },
+    "lothar-matthaus": { "id": "lothar-matthaus", "statValue": 5, "metadata": { "countryCode": "DE" } },
+    "mexico-rafael-marquez": { "id": "mexico-rafael-marquez", "statValue": 5, "metadata": { "countryCode": "MX" } },
+    "mexico-andres-guardado": { "id": "mexico-andres-guardado", "statValue": 5, "metadata": { "countryCode": "MX" } },
+    "pele": { "id": "pele", "statValue": 4, "metadata": { "countryCode": "BR" } },
+    "gianluigi-buffon": { "id": "gianluigi-buffon", "statValue": 4, "metadata": { "countryCode": "IT" } },
+    "cristiano-ronaldo": { "id": "cristiano-ronaldo", "statValue": 5, "metadata": { "countryCode": "PT" } },
+    "lionel-messi": { "id": "lionel-messi", "statValue": 5, "metadata": { "countryCode": "AR" } },
+    "mexico-guillermo-ochoa": { "id": "mexico-guillermo-ochoa", "statValue": 4, "metadata": { "countryCode": "MX" } },
+    "mexico-hirving-lozano": { "id": "mexico-hirving-lozano", "statValue": 3, "metadata": { "countryCode": "MX" } }
+  }
+}

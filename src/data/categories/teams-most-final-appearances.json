@@ -1,0 +1,18 @@
+{
+  "id": "teams-most-final-appearances",
+  "type": "team",
+  "i18nKey": "categories.teamsMostFinalAppearances",
+  "correctOrder": ["germany", "brazil", "italy", "argentina", "netherlands", "france", "czechoslovakia", "hungary", "sweden", "england"],
+  "items": {
+    "germany": { "id": "germany", "statValue": 8, "metadata": { "countryCode": "DE" } },
+    "brazil": { "id": "brazil", "statValue": 7, "metadata": { "countryCode": "BR" } },
+    "italy": { "id": "italy", "statValue": 6, "metadata": { "countryCode": "IT" } },
+    "argentina": { "id": "argentina", "statValue": 6, "metadata": { "countryCode": "AR" } },
+    "netherlands": { "id": "netherlands", "statValue": 3, "metadata": { "countryCode": "NL" } },
+    "france": { "id": "france", "statValue": 3, "metadata": { "countryCode": "FR" } },
+    "czechoslovakia": { "id": "czechoslovakia", "statValue": 2, "metadata": { "countryCode": "CZ" } },
+    "hungary": { "id": "hungary", "statValue": 2, "metadata": { "countryCode": "HU" } },
+    "sweden": { "id": "sweden", "statValue": 1, "metadata": { "countryCode": "SE" } },
+    "england": { "id": "england", "statValue": 1, "metadata": { "countryCode": "GB" } }
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "common": {
+    "appName": "Ranked11",
+    "dailyChallenge": "Desafio Diário",
+    "categories": "Categorias",
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "play": "Jogar",
+    "retry": "Tentar novamente",
+    "home": "Início",
+    "footer": "Ranked11 — Trivia de rankings da Copa do Mundo FIFA. Estatísticas até Catar 2022."
+  },
+  "home": {
+    "metaTitle": "Ranked11 — Desafio Diário da Copa",
+    "metaDescription": "Teste seu conhecimento sobre a Copa do Mundo FIFA com desafios diários de Top 10.",
+    "dailyChallenge": "Desafio Diário",
+    "heroTitle": "Desafio de Hoje",
+    "heroDescription": "Ordene o Top 10. Uma categoria. Mesmo desafio para todos. Novo puzzle a cada 24 horas.",
+    "todaysCategory": "Categoria de Hoje",
+    "categoryHidden": "Inicie o desafio para revelar",
+    "nextChallenge": "Próximo desafio em",
+    "startChallenge": "Iniciar Desafio",
+    "exploreCategories": "Explorar Categorias",
+    "exploreDescription": "Pratique com 20 categorias de ranking da Copa no seu ritmo.",
+    "browseCategories": "Ver Categorias"
+  },
+  "categoriesPage": {
+    "metaTitle": "Categorias — Ranked11",
+    "metaDescription": "Explore todas as 20 categorias de ranking da Copa do Mundo FIFA.",
+    "title": "Todas as Categorias",
+    "description": "Escolha uma categoria e teste seu conhecimento sobre a Copa."
+  },
+  "game": {
+    "dragMode": "Arrastar e Soltar",
+    "selectMode": "Toque para Colocar",
+    "interactionMode": "Modo de interação",
+    "timer": "Cronômetro",
+    "hardMode": "Modo Difícil (60s)",
+    "normalMode": "Modo Normal",
+    "difficulty": "Dificuldade",
+    "availableItems": "Itens Disponíveis",
+    "allPlaced": "Todos os itens colocados",
+    "rankingSlots": "Posições do ranking",
+    "selectHint": "Selecione um item e toque em uma posição para colocá-lo.",
+    "dailyReveal": "Desafio Diário",
+    "dailyRevealHint": "Pronto para testar seu conhecimento sobre a Copa?",
+    "startChallenge": "Revelar e Iniciar",
+    "confirmSubmit": "Enviar ranking incompleto?",
+    "confirmSubmitHint": "Você tem {count} posições vazias. Itens não colocados valerão 0 pontos.",
+    "replayNotice": "Replay — pontuação não ranqueada"
+  },
+  "results": {
+    "yourScore": "Sua Pontuação",
+    "perfect": "Pontuação Perfeita!",
+    "breakdown": "Detalhamento da pontuação",
+    "complete": "Desafio Concluído!",
+    "dailyResult": "Desafio Diário",
+    "categoryResult": "Modo Categoria",
+    "playAgain": "Jogar Novamente",
+    "retryCategory": "Tentar Novamente",
+    "moreCategories": "Mais Categorias"
+  },
+  "categories": {
+    "teamsMostTitles": {
+      "title": "Seleções com Mais Títulos da Copa",
+      "description": "Ordene as seleções por títulos mundiais conquistados."
+    },
+    "teamsMostAppearances": {
+      "title": "Seleções com Mais Participações",
+      "description": "Ordene as seleções por participações em Copas do Mundo."
+    },
+    "teamsMostWins": {
+      "title": "Seleções com Mais Vitórias",
+      "description": "Ordene as seleções por vitórias na Copa do Mundo."
+    },
+    "teamsMostGoalsScored": {
+      "title": "Seleções com Mais Gols Marcados",
+      "description": "Ordene as seleções por gols marcados na Copa."
+    },
+    "teamsMostGoalsConceded": {
+      "title": "Seleções que Mais Sofreram Gols",
+      "description": "Ordene as seleções por gols sofridos na Copa."
+    },
+    "teamsMostMatches": {
+      "title": "Seleções com Mais Jogos",
+      "description": "Ordene as seleções por jogos disputados na Copa."
+    },
+    "teamsMostFinalAppearances": {
+      "title": "Seleções com Mais Finais",
+      "description": "Ordene as seleções por aparições em finais de Copa."
+    },
+    "teamsMostSemiFinalAppearances": {
+      "title": "Seleções com Mais Semifinais",
+      "description": "Ordene as seleções por aparições em semifinais."
+    },
+    "teamsMostGroupEliminations": {
+      "title": "Seleções com Mais Eliminadas na Fase de Grupos",
+      "description": "Ordene as seleções eliminadas na fase de grupos."
+    },
+    "teamsMostCleanSheets": {
+      "title": "Seleções com Mais Clean Sheets",
+      "description": "Ordene as seleções por jogos sem sofrer gols."
+    },
+    "topGoalscorers": {
+      "title": "Maiores Artilheiros da Copa",
+      "description": "Ordene os maiores artilheiros de todos os tempos."
+    },
+    "playersMostAppearances": {
+      "title": "Jogadores com Mais Jogos na Copa",
+      "description": "Ordene os jogadores por partidas disputadas."
+    },
+    "playersMostGoalsSingleCup": {
+      "title": "Jogadores com Mais Gols em Uma Copa",
+      "description": "Ordene os jogadores por gols em um único torneio."
+    },
+    "playersMostWorldCups": {
+      "title": "Jogadores com Mais Copas Disputadas",
+      "description": "Ordene os jogadores por Copas disputadas."
+    },
+    "playersMostAssists": {
+      "title": "Jogadores com Mais Assistências",
+      "description": "Ordene os jogadores por assistências na Copa."
+    },
+    "playersMostCards": {
+      "title": "Jogadores com Mais Cartões",
+      "description": "Ordene os jogadores por cartões na Copa."
+    },
+    "coachesMostMatches": {
+      "title": "Técnicos com Mais Jogos",
+      "description": "Ordene os técnicos por jogos na Copa."
+    },
+    "coachesMostWins": {
+      "title": "Técnicos com Mais Vitórias",
+      "description": "Ordene os técnicos por vitórias na Copa."
+    },
+    "countriesMostHosted": {
+      "title": "Países que Mais Sediaram a Copa",
+      "description": "Ordene os países por vezes que sediaram a Copa."
+    },
+    "worldCupsHighestAttendance": {
+      "title": "Copas com Maior Público",
+      "description": "Ordene as edições da Copa por público total."
+    },
+    "items": {
+      "brazil": "Brasil",
+      "germany": "Alemanha",
+      "italy": "Itália",
+      "argentina": "Argentina",
+      "france": "França",
+      "uruguay": "Uruguai",
+      "england": "Inglaterra",
+      "spain": "Espanha",
+      "croatia": "Croácia",
+      "netherlands": "Holanda",
+      "mexico": "México",
+      "belgium": "Bélgica",
+      "hungary": "Hungria",
+      "czechoslovakia": "Tchecoslováquia",
+      "sweden": "Suécia",
+      "scotland": "Escócia",
+      "cameroon": "Camarões",
+      "south-africa": "África do Sul",
+      "honduras": "Honduras",
+      "new-zealand": "Nova Zelândia",
+      "qatar": "Catar",
+      "china": "China",
+      "haiti": "Haiti",
+      "canada": "Canadá",
+      "switzerland": "Suíça",
+      "miroslav-klosse": "Miroslav Klose",
+      "ronaldo": "Ronaldo",
+      "germany-muller": "Gerd Müller",
+      "pele": "Pelé",
+      "jurgen-klinsmann": "Jürgen Klinsmann",
+      "gabor-kiraly": "Gábor Király",
+      "thomas-muller": "Thomas Müller",
+      "just-fontaine": "Just Fontaine",
+      "sandor-kocsis": "Sándor Kocsis",
+      "gabriel-batistuta": "Gabriel Batistuta",
+      "lothar-matthaus": "Lothar Matthäus",
+      "mexico-antonio-carbajal": "Antonio Carbajal",
+      "gianluigi-buffon": "Gianluigi Buffon",
+      "mexico-rafael-marquez": "Rafael Márquez",
+      "mexico-andres-guardado": "Andrés Guardado",
+      "cristiano-ronaldo": "Cristiano Ronaldo",
+      "lionel-messi": "Lionel Messi",
+      "mexico-javier-hernandez": "Javier Hernández",
+      "mexico-guillermo-ochoa": "Guillermo Ochoa",
+      "mexico-hirving-lozano": "Hirving Lozano",
+      "eusebio": "Eusébio",
+      "helmut-rahn": "Helmut Rahn",
+      "geoff-hurst": "Geoff Hurst",
+      "paolo-rossi": "Paolo Rossi",
+      "diego-maradona": "Diego Maradona",
+      "david-beckham": "David Beckham",
+      "xavi": "Xavi",
+      "andres-iniesta": "Andrés Iniesta",
+      "neymar": "Neymar",
+      "kevin-de-bruyne": "Kevin De Bruyne",
+      "zinedine-zidane": "Zinedine Zidane",
+      "cameroon-rigobert-song": "Rigobert Song",
+      "pepe": "Pepe",
+      "sergio-ramos": "Sergio Ramos",
+      "gerardo-torrado": "Gerardo Torrado",
+      "patrick-vieira": "Patrick Vieira",
+      "roy-keane": "Roy Keane",
+      "carlos-sanchez": "Carlos Sánchez",
+      "helmut-schon": "Helmut Schön",
+      "carlos-alberto-parreira": "Carlos Alberto Parreira",
+      "luiz-felipe-scolari": "Luiz Felipe Scolari",
+      "mario-zagallo": "Mário Zagallo",
+      "guus-hiddink": "Guus Hiddink",
+      "carlos-bilardo": "Carlos Bilardo",
+      "jose-pekerman": "José Pekerman",
+      "marcelo-bielsa": "Marcelo Bielsa",
+      "vicente-del-bosque": "Vicente del Bosque",
+      "jupp-heynckes": "Jupp Heynckes",
+      "usa-1994": "EUA 1994",
+      "germany-2006": "Alemanha 2006",
+      "brazil-2014": "Brasil 2014",
+      "france-1998": "França 1998",
+      "mexico-1970": "México 1970",
+      "japan-korea-2002": "Japão/Coreia 2002",
+      "south-africa-2010": "África do Sul 2010",
+      "spain-1982": "Espanha 1982",
+      "italy-1990": "Itália 1990",
+      "russia-2018": "Rússia 2018"
+    }
+  }
+}

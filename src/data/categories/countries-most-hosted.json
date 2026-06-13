@@ -1,0 +1,18 @@
+{
+  "id": "countries-most-hosted",
+  "type": "country",
+  "i18nKey": "categories.countriesMostHosted",
+  "correctOrder": ["mexico", "italy", "france", "germany", "brazil", "argentina", "spain", "england", "uruguay", "switzerland"],
+  "items": {
+    "mexico": { "id": "mexico", "statValue": 3, "metadata": { "countryCode": "MX" } },
+    "italy": { "id": "italy", "statValue": 2, "metadata": { "countryCode": "IT" } },
+    "france": { "id": "france", "statValue": 2, "metadata": { "countryCode": "FR" } },
+    "germany": { "id": "germany", "statValue": 2, "metadata": { "countryCode": "DE" } },
+    "brazil": { "id": "brazil", "statValue": 2, "metadata": { "countryCode": "BR" } },
+    "argentina": { "id": "argentina", "statValue": 1, "metadata": { "countryCode": "AR" } },
+    "spain": { "id": "spain", "statValue": 1, "metadata": { "countryCode": "ES" } },
+    "england": { "id": "england", "statValue": 1, "metadata": { "countryCode": "GB" } },
+    "uruguay": { "id": "uruguay", "statValue": 1, "metadata": { "countryCode": "UY" } },
+    "switzerland": { "id": "switzerland", "statValue": 1, "metadata": { "countryCode": "CH" } }
+  }
+}

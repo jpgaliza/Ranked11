@@ -1,0 +1,18 @@
+{
+  "id": "players-most-assists",
+  "type": "player",
+  "i18nKey": "categories.playersMostAssists",
+  "correctOrder": ["pele", "thomas-muller", "diego-maradona", "lionel-messi", "david-beckham", "xavi", "andres-iniesta", "cristiano-ronaldo", "neymar", "kevin-de-bruyne"],
+  "items": {
+    "pele": { "id": "pele", "statValue": 8, "metadata": { "countryCode": "BR" } },
+    "thomas-muller": { "id": "thomas-muller", "statValue": 7, "metadata": { "countryCode": "DE" } },
+    "diego-maradona": { "id": "diego-maradona", "statValue": 6, "metadata": { "countryCode": "AR" } },
+    "lionel-messi": { "id": "lionel-messi", "statValue": 6, "metadata": { "countryCode": "AR" } },
+    "david-beckham": { "id": "david-beckham", "statValue": 5, "metadata": { "countryCode": "GB" } },
+    "xavi": { "id": "xavi", "statValue": 5, "metadata": { "countryCode": "ES" } },
+    "andres-iniesta": { "id": "andres-iniesta", "statValue": 4, "metadata": { "countryCode": "ES" } },
+    "cristiano-ronaldo": { "id": "cristiano-ronaldo", "statValue": 4, "metadata": { "countryCode": "PT" } },
+    "neymar": { "id": "neymar", "statValue": 4, "metadata": { "countryCode": "BR" } },
+    "kevin-de-bruyne": { "id": "kevin-de-bruyne", "statValue": 3, "metadata": { "countryCode": "BE" } }
+  }
+}

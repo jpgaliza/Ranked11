@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "categories": [
+    { "id": "teams-most-titles", "type": "team", "i18nKey": "categories.teamsMostTitles", "icon": "trophy", "featured": true },
+    { "id": "teams-most-appearances", "type": "team", "i18nKey": "categories.teamsMostAppearances", "icon": "shield" },
+    { "id": "teams-most-wins", "type": "team", "i18nKey": "categories.teamsMostWins", "icon": "medal" },
+    { "id": "teams-most-goals-scored", "type": "team", "i18nKey": "categories.teamsMostGoalsScored", "icon": "target" },
+    { "id": "teams-most-goals-conceded", "type": "team", "i18nKey": "categories.teamsMostGoalsConceded", "icon": "shield-off" },
+    { "id": "teams-most-matches", "type": "team", "i18nKey": "categories.teamsMostMatches", "icon": "calendar" },
+    { "id": "teams-most-final-appearances", "type": "team", "i18nKey": "categories.teamsMostFinalAppearances", "icon": "star" },
+    { "id": "teams-most-semi-final-appearances", "type": "team", "i18nKey": "categories.teamsMostSemiFinalAppearances", "icon": "award" },
+    { "id": "teams-most-group-eliminations", "type": "team", "i18nKey": "categories.teamsMostGroupEliminations", "icon": "x-circle" },
+    { "id": "teams-most-clean-sheets", "type": "team", "i18nKey": "categories.teamsMostCleanSheets", "icon": "lock" },
+    { "id": "top-goalscorers", "type": "player", "i18nKey": "categories.topGoalscorers", "icon": "flame", "featured": true },
+    { "id": "players-most-appearances", "type": "player", "i18nKey": "categories.playersMostAppearances", "icon": "users" },
+    { "id": "players-most-goals-single-cup", "type": "player", "i18nKey": "categories.playersMostGoalsSingleCup", "icon": "zap" },
+    { "id": "players-most-world-cups", "type": "player", "i18nKey": "categories.playersMostWorldCups", "icon": "globe" },
+    { "id": "players-most-assists", "type": "player", "i18nKey": "categories.playersMostAssists", "icon": "handshake" },
+    { "id": "players-most-cards", "type": "player", "i18nKey": "categories.playersMostCards", "icon": "alert-triangle" },
+    { "id": "coaches-most-matches", "type": "coach", "i18nKey": "categories.coachesMostMatches", "icon": "clipboard" },
+    { "id": "coaches-most-wins", "type": "coach", "i18nKey": "categories.coachesMostWins", "icon": "check-circle" },
+    { "id": "countries-most-hosted", "type": "country", "i18nKey": "categories.countriesMostHosted", "icon": "map-pin" },
+    { "id": "world-cups-highest-attendance", "type": "tournament", "i18nKey": "categories.worldCupsHighestAttendance", "icon": "stadium" }
+  ]
+}

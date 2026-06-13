@@ -1,0 +1,18 @@
+{
+  "id": "coaches-most-matches",
+  "type": "coach",
+  "i18nKey": "categories.coachesMostMatches",
+  "correctOrder": ["helmut-schon", "carlos-alberto-parreira", "luiz-felipe-scolari", "mario-zagallo", "guus-hiddink", "carlos-bilardo", "jose-pekerman", "marcelo-bielsa", "vicente-del-bosque", "jupp-heynckes"],
+  "items": {
+    "helmut-schon": { "id": "helmut-schon", "statValue": 25, "metadata": { "countryCode": "DE" } },
+    "carlos-alberto-parreira": { "id": "carlos-alberto-parreira", "statValue": 23, "metadata": { "countryCode": "BR" } },
+    "luiz-felipe-scolari": { "id": "luiz-felipe-scolari", "statValue": 20, "metadata": { "countryCode": "BR" } },
+    "mario-zagallo": { "id": "mario-zagallo", "statValue": 18, "metadata": { "countryCode": "BR" } },
+    "guus-hiddink": { "id": "guus-hiddink", "statValue": 17, "metadata": { "countryCode": "NL" } },
+    "carlos-bilardo": { "id": "carlos-bilardo", "statValue": 16, "metadata": { "countryCode": "AR" } },
+    "jose-pekerman": { "id": "jose-pekerman", "statValue": 15, "metadata": { "countryCode": "AR" } },
+    "marcelo-bielsa": { "id": "marcelo-bielsa", "statValue": 14, "metadata": { "countryCode": "AR" } },
+    "vicente-del-bosque": { "id": "vicente-del-bosque", "statValue": 13, "metadata": { "countryCode": "ES" } },
+    "jupp-heynckes": { "id": "jupp-heynckes", "statValue": 12, "metadata": { "countryCode": "DE" } }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "teams-most-clean-sheets",
+  "type": "team",
+  "i18nKey": "categories.teamsMostCleanSheets",
+  "correctOrder": ["italy", "brazil", "germany", "france", "argentina", "england", "spain", "netherlands", "uruguay", "belgium"],
+  "items": {
+    "italy": { "id": "italy", "statValue": 43, "metadata": { "countryCode": "IT" } },
+    "brazil": { "id": "brazil", "statValue": 42, "metadata": { "countryCode": "BR" } },
+    "germany": { "id": "germany", "statValue": 40, "metadata": { "countryCode": "DE" } },
+    "france": { "id": "france", "statValue": 28, "metadata": { "countryCode": "FR" } },
+    "argentina": { "id": "argentina", "statValue": 27, "metadata": { "countryCode": "AR" } },
+    "england": { "id": "england", "statValue": 26, "metadata": { "countryCode": "GB" } },
+    "spain": { "id": "spain", "statValue": 24, "metadata": { "countryCode": "ES" } },
+    "netherlands": { "id": "netherlands", "statValue": 20, "metadata": { "countryCode": "NL" } },
+    "uruguay": { "id": "uruguay", "statValue": 18, "metadata": { "countryCode": "UY" } },
+    "belgium": { "id": "belgium", "statValue": 16, "metadata": { "countryCode": "BE" } }
+  }
+}

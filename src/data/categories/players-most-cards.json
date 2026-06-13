@@ -1,0 +1,18 @@
+{
+  "id": "players-most-cards",
+  "type": "player",
+  "i18nKey": "categories.playersMostCards",
+  "correctOrder": ["zinedine-zidane", "cameroon-rigobert-song", "mexico-rafael-marquez", "diego-maradona", "pepe", "sergio-ramos", "gerardo-torrado", "patrick-vieira", "roy-keane", "carlos-sanchez"],
+  "items": {
+    "zinedine-zidane": { "id": "zinedine-zidane", "statValue": 4, "metadata": { "countryCode": "FR" } },
+    "cameroon-rigobert-song": { "id": "cameroon-rigobert-song", "statValue": 4, "metadata": { "countryCode": "CM" } },
+    "mexico-rafael-marquez": { "id": "mexico-rafael-marquez", "statValue": 4, "metadata": { "countryCode": "MX" } },
+    "diego-maradona": { "id": "diego-maradona", "statValue": 3, "metadata": { "countryCode": "AR" } },
+    "pepe": { "id": "pepe", "statValue": 3, "metadata": { "countryCode": "PT" } },
+    "sergio-ramos": { "id": "sergio-ramos", "statValue": 3, "metadata": { "countryCode": "ES" } },
+    "gerardo-torrado": { "id": "gerardo-torrado", "statValue": 3, "metadata": { "countryCode": "MX" } },
+    "patrick-vieira": { "id": "patrick-vieira", "statValue": 3, "metadata": { "countryCode": "FR" } },
+    "roy-keane": { "id": "roy-keane", "statValue": 2, "metadata": { "countryCode": "IE" } },
+    "carlos-sanchez": { "id": "carlos-sanchez", "statValue": 2, "metadata": { "countryCode": "CO" } }
+  }
+}

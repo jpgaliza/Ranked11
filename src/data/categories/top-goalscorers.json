@@ -1,0 +1,18 @@
+{
+  "id": "top-goalscorers",
+  "type": "player",
+  "i18nKey": "categories.topGoalscorers",
+  "correctOrder": ["miroslav-klosse", "ronaldo", "germany-muller", "just-fontaine", "pele", "jurgen-klinsmann", "gabor-kiraly", "sandor-kocsis", "thomas-muller", "gabriel-batistuta"],
+  "items": {
+    "miroslav-klosse": { "id": "miroslav-klosse", "statValue": 16, "metadata": { "countryCode": "DE" } },
+    "ronaldo": { "id": "ronaldo", "statValue": 15, "metadata": { "countryCode": "BR" } },
+    "germany-muller": { "id": "germany-muller", "statValue": 14, "metadata": { "countryCode": "DE" } },
+    "pele": { "id": "pele", "statValue": 12, "metadata": { "countryCode": "BR" } },
+    "jurgen-klinsmann": { "id": "jurgen-klinsmann", "statValue": 11, "metadata": { "countryCode": "DE" } },
+    "gabor-kiraly": { "id": "gabor-kiraly", "statValue": 11, "metadata": { "countryCode": "HU" } },
+    "thomas-muller": { "id": "thomas-muller", "statValue": 10, "metadata": { "countryCode": "DE" } },
+    "just-fontaine": { "id": "just-fontaine", "statValue": 13, "metadata": { "countryCode": "FR" } },
+    "sandor-kocsis": { "id": "sandor-kocsis", "statValue": 11, "metadata": { "countryCode": "HU" } },
+    "gabriel-batistuta": { "id": "gabriel-batistuta", "statValue": 10, "metadata": { "countryCode": "AR" } }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "teams-most-goals-scored",
+  "type": "team",
+  "i18nKey": "categories.teamsMostGoalsScored",
+  "correctOrder": ["germany", "brazil", "argentina", "france", "italy", "spain", "england", "netherlands", "uruguay", "hungary"],
+  "items": {
+    "germany": { "id": "germany", "statValue": 232, "metadata": { "countryCode": "DE" } },
+    "brazil": { "id": "brazil", "statValue": 229, "metadata": { "countryCode": "BR" } },
+    "argentina": { "id": "argentina", "statValue": 144, "metadata": { "countryCode": "AR" } },
+    "france": { "id": "france", "statValue": 125, "metadata": { "countryCode": "FR" } },
+    "italy": { "id": "italy", "statValue": 128, "metadata": { "countryCode": "IT" } },
+    "spain": { "id": "spain", "statValue": 100, "metadata": { "countryCode": "ES" } },
+    "england": { "id": "england", "statValue": 91, "metadata": { "countryCode": "GB" } },
+    "netherlands": { "id": "netherlands", "statValue": 86, "metadata": { "countryCode": "NL" } },
+    "uruguay": { "id": "uruguay", "statValue": 87, "metadata": { "countryCode": "UY" } },
+    "hungary": { "id": "hungary", "statValue": 87, "metadata": { "countryCode": "HU" } }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "world-cups-highest-attendance",
+  "type": "tournament",
+  "i18nKey": "categories.worldCupsHighestAttendance",
+  "correctOrder": ["usa-1994", "brazil-2014", "germany-2006", "south-africa-2010", "russia-2018", "japan-korea-2002", "france-1998", "italy-1990", "spain-1982", "mexico-1970"],
+  "items": {
+    "usa-1994": { "id": "usa-1994", "statValue": 3587538, "metadata": { "countryCode": "US" } },
+    "germany-2006": { "id": "germany-2006", "statValue": 3352605, "metadata": { "countryCode": "DE" } },
+    "brazil-2014": { "id": "brazil-2014", "statValue": 3429873, "metadata": { "countryCode": "BR" } },
+    "france-1998": { "id": "france-1998", "statValue": 2785100, "metadata": { "countryCode": "FR" } },
+    "mexico-1970": { "id": "mexico-1970", "statValue": 1603975, "metadata": { "countryCode": "MX" } },
+    "japan-korea-2002": { "id": "japan-korea-2002", "statValue": 2705197, "metadata": { "countryCode": "JP" } },
+    "south-africa-2010": { "id": "south-africa-2010", "statValue": 3178856, "metadata": { "countryCode": "ZA" } },
+    "spain-1982": { "id": "spain-1982", "statValue": 2109723, "metadata": { "countryCode": "ES" } },
+    "italy-1990": { "id": "italy-1990", "statValue": 2516215, "metadata": { "countryCode": "IT" } },
+    "russia-2018": { "id": "russia-2018", "statValue": 3031768, "metadata": { "countryCode": "RU" } }
+  }
+}

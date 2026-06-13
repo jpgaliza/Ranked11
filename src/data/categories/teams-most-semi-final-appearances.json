@@ -1,0 +1,18 @@
+{
+  "id": "teams-most-semi-final-appearances",
+  "type": "team",
+  "i18nKey": "categories.teamsMostSemiFinalAppearances",
+  "correctOrder": ["germany", "brazil", "italy", "argentina", "france", "netherlands", "england", "uruguay", "sweden", "spain"],
+  "items": {
+    "germany": { "id": "germany", "statValue": 13, "metadata": { "countryCode": "DE" } },
+    "brazil": { "id": "brazil", "statValue": 11, "metadata": { "countryCode": "BR" } },
+    "italy": { "id": "italy", "statValue": 8, "metadata": { "countryCode": "IT" } },
+    "argentina": { "id": "argentina", "statValue": 6, "metadata": { "countryCode": "AR" } },
+    "france": { "id": "france", "statValue": 6, "metadata": { "countryCode": "FR" } },
+    "netherlands": { "id": "netherlands", "statValue": 5, "metadata": { "countryCode": "NL" } },
+    "england": { "id": "england", "statValue": 3, "metadata": { "countryCode": "GB" } },
+    "uruguay": { "id": "uruguay", "statValue": 3, "metadata": { "countryCode": "UY" } },
+    "sweden": { "id": "sweden", "statValue": 4, "metadata": { "countryCode": "SE" } },
+    "spain": { "id": "spain", "statValue": 2, "metadata": { "countryCode": "ES" } }
+  }
+}

@@ -1,0 +1,24 @@
+import type { RankedItem } from "@/types/category";
+
+export function shuffleItems<T>(items: T[]): T[] {
+  const shuffled = [...items];
+  for (let i = shuffled.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+export function itemsFromOrder(
+  order: string[],
+  items: Record<string, RankedItem>,
+): RankedItem[] {
+  return order.map((id) => items[id]).filter(Boolean);
+}
+
+export function shuffleCategoryPool(
+  order: string[],
+  items: Record<string, RankedItem>,
+): RankedItem[] {
+  return shuffleItems(itemsFromOrder(order, items));
+}

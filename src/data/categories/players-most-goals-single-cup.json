@@ -1,0 +1,18 @@
+{
+  "id": "players-most-goals-single-cup",
+  "type": "player",
+  "i18nKey": "categories.playersMostGoalsSingleCup",
+  "correctOrder": ["just-fontaine", "sandor-kocsis", "germany-muller", "eusebio", "helmut-rahn", "pele", "geoff-hurst", "paolo-rossi", "jurgen-klinsmann", "gabriel-batistuta"],
+  "items": {
+    "just-fontaine": { "id": "just-fontaine", "statValue": 13, "metadata": { "countryCode": "FR" } },
+    "sandor-kocsis": { "id": "sandor-kocsis", "statValue": 11, "metadata": { "countryCode": "HU" } },
+    "germany-muller": { "id": "germany-muller", "statValue": 10, "metadata": { "countryCode": "DE" } },
+    "eusebio": { "id": "eusebio", "statValue": 9, "metadata": { "countryCode": "PT" } },
+    "helmut-rahn": { "id": "helmut-rahn", "statValue": 4, "metadata": { "countryCode": "DE" } },
+    "pele": { "id": "pele", "statValue": 8, "metadata": { "countryCode": "BR" } },
+    "geoff-hurst": { "id": "geoff-hurst", "statValue": 4, "metadata": { "countryCode": "GB" } },
+    "paolo-rossi": { "id": "paolo-rossi", "statValue": 6, "metadata": { "countryCode": "IT" } },
+    "jurgen-klinsmann": { "id": "jurgen-klinsmann", "statValue": 5, "metadata": { "countryCode": "DE" } },
+    "gabriel-batistuta": { "id": "gabriel-batistuta", "statValue": 5, "metadata": { "countryCode": "AR" } }
+  }
+}

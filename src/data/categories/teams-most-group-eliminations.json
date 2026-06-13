@@ -1,0 +1,18 @@
+{
+  "id": "teams-most-group-eliminations",
+  "type": "team",
+  "i18nKey": "categories.teamsMostGroupEliminations",
+  "correctOrder": ["mexico", "scotland", "cameroon", "south-africa", "honduras", "new-zealand", "qatar", "china", "haiti", "canada"],
+  "items": {
+    "mexico": { "id": "mexico", "statValue": 10, "metadata": { "countryCode": "MX" } },
+    "scotland": { "id": "scotland", "statValue": 8, "metadata": { "countryCode": "GB" } },
+    "cameroon": { "id": "cameroon", "statValue": 7, "metadata": { "countryCode": "CM" } },
+    "south-africa": { "id": "south-africa", "statValue": 3, "metadata": { "countryCode": "ZA" } },
+    "honduras": { "id": "honduras", "statValue": 3, "metadata": { "countryCode": "HN" } },
+    "new-zealand": { "id": "new-zealand", "statValue": 3, "metadata": { "countryCode": "NZ" } },
+    "qatar": { "id": "qatar", "statValue": 1, "metadata": { "countryCode": "QA" } },
+    "china": { "id": "china", "statValue": 1, "metadata": { "countryCode": "CN" } },
+    "haiti": { "id": "haiti", "statValue": 1, "metadata": { "countryCode": "HT" } },
+    "canada": { "id": "canada", "statValue": 1, "metadata": { "countryCode": "CA" } }
+  }
+}
