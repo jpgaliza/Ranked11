@@ -11,22 +11,27 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { motion } from "motion/react";
+import { ChevronLeft, Trophy, Star, RotateCcw, ArrowUpDown, Clock } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import type { CategoryDefinition } from "@/types/category";
 import type { Difficulty, GameMode } from "@/types/game";
 import type { RankedItem } from "@/types/category";
 import { useGameState } from "@/hooks/use-game-state";
 import { useGameTimer } from "@/hooks/use-game-timer";
+import { useIsDark } from "@/hooks/use-is-dark";
 import { calculateScore, slotsToPlayerOrder } from "@/lib/game/scoring";
 import {
   buildAttemptRecord,
   incrementDailyAttemptCount,
   saveDailyFirstAttempt,
 } from "@/lib/storage/daily-attempt-store";
+import { saveResultPayload } from "@/lib/storage/result-payload-store";
+import { getCategoryIcon } from "@/lib/view-models/category-display";
+import { categoryManifest } from "@/lib/categories/loader";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -35,12 +40,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { CategoryReveal } from "./category-reveal";
-import { InteractionToggle } from "./interaction-toggle";
-import { GameTimer } from "./game-timer";
 import { RankingSlot } from "./ranking-slots";
 import { ItemPool } from "./item-pool";
-import { ItemCard } from "./item-card";
-import { ScoreBreakdown } from "./score-breakdown";
+import { DraggableItem } from "./draggable-item";
 
 interface GameBoardProps {
   category: CategoryDefinition;
@@ -61,8 +63,10 @@ export function GameBoard({
 }: GameBoardProps) {
   const t = useTranslations("game");
   const tCommon = useTranslations("common");
+  const tItems = useTranslations("categories.items");
   const router = useRouter();
-  const { state, dispatch, startGame, setInteractionMode, initialized } = useGameState(
+  const isDark = useIsDark();
+  const { state, dispatch, startGame, initialized } = useGameState(
     category,
     mode,
     difficulty,
@@ -70,6 +74,16 @@ export function GameBoard({
   const [activeItem, setActiveItem] = useState<RankedItem | null>(null);
   const [confirmSubmitOpen, setConfirmSubmitOpen] = useState(false);
   const [revealOpen, setRevealOpen] = useState(showReveal);
+
+  const categoryIcon = useMemo(() => {
+    const entry = categoryManifest.categories.find((e) => e.id === category.id);
+    return entry ? getCategoryIcon(entry) : "🏆";
+  }, [category.id]);
+
+  const getItemName = useCallback(
+    (id: string) => (tItems.has(id) ? tItems(id) : id.replace(/-/g, " ")),
+    [tItems],
+  );
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
@@ -79,21 +93,29 @@ export function GameBoard({
 
   const handleSubmit = useCallback(() => {
     const playerOrder = slotsToPlayerOrder(state.slots);
-    const score = calculateScore(playerOrder, state.correctOrder);
-    dispatch({ type: "SUBMIT", payload: { score } });
+    const scoreResult = calculateScore(playerOrder, state.correctOrder);
+    dispatch({ type: "SUBMIT", payload: { score: scoreResult } });
 
     if (mode === "daily") {
       const attemptCount = incrementDailyAttemptCount();
       const isFirst = attemptCount === 1;
       if (isFirst) {
         saveDailyFirstAttempt(
-          buildAttemptRecord(category.id, score.totalScore, score.itemScores, true),
+          buildAttemptRecord(category.id, scoreResult.totalScore, scoreResult.itemScores, true),
         );
       }
     }
 
+    saveResultPayload({
+      categoryId: category.id,
+      mode,
+      scoreResult,
+      playerOrder,
+      submittedAt: new Date().toISOString(),
+    });
+
     const params = new URLSearchParams({
-      score: String(score.totalScore),
+      score: String(scoreResult.totalScore),
       mode,
       categoryId: category.id,
     });
@@ -151,7 +173,7 @@ export function GameBoard({
   };
 
   const handleSlotClick = (index: number) => {
-    if (state.interactionMode !== "select" || !state.selectedItemId) return;
+    if (!state.selectedItemId) return;
     dispatch({
       type: "ASSIGN_TO_SLOT",
       payload: { slotIndex: index, itemId: state.selectedItemId },
@@ -159,17 +181,25 @@ export function GameBoard({
   };
 
   const handleItemSelect = (itemId: string) => {
-    if (state.interactionMode !== "select") return;
-    dispatch({ type: "SELECT_ITEM", payload: { itemId } });
+    dispatch({
+      type: "SELECT_ITEM",
+      payload: { itemId: state.selectedItemId === itemId ? null : itemId },
+    });
   };
 
   const handleStart = () => {
     setRevealOpen(false);
-    const isFirst = mode !== "daily" || true;
-    startGame(isFirst);
+    startGame(true);
   };
 
-  const emptySlots = state.slots.filter((s) => s === null).length;
+  const handleReset = () => {
+    dispatch({ type: "RESET" });
+    dispatch({ type: "SELECT_ITEM", payload: { itemId: null } });
+  };
+
+  const placedCount = state.slots.filter((s) => s !== null).length;
+  const emptySlots = 10 - placedCount;
+
   const requestSubmit = () => {
     if (emptySlots > 0 && state.difficulty === "normal") {
       setConfirmSubmitOpen(true);
@@ -177,6 +207,14 @@ export function GameBoard({
       handleSubmit();
     }
   };
+
+  const selectedItemName = state.selectedItemId
+    ? getItemName(state.selectedItemId)
+    : undefined;
+
+  const backHref = mode === "daily" ? "/daily" : "/categories";
+  const timerSeconds = Math.ceil((state.timerRemainingMs ?? 0) / 1000);
+  const timerDisplay = `${Math.floor(timerSeconds / 60)}:${String(timerSeconds % 60).padStart(2, "0")}`;
 
   useEffect(() => {
     if (!initialized || showReveal) return;
@@ -196,84 +234,150 @@ export function GameBoard({
         />
       )}
 
-      <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-primary">{categoryTitle}</h1>
-            <p className="text-sm text-muted-foreground">{categoryDescription}</p>
+      <div className="min-h-[calc(100dvh-4rem)] pb-8">
+        <div
+          className="sticky top-16 z-40 border-b border-border"
+          style={{
+            background: isDark ? "rgba(2,6,23,0.95)" : "rgba(248,250,252,0.97)",
+          }}
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+            <Link
+              href={backHref}
+              className="flex items-center gap-1.5 text-sm transition-colors hover:text-primary font-display font-semibold"
+              style={{ color: isDark ? "#94A3B8" : "#64748B" }}
+            >
+              <ChevronLeft size={16} /> {t("back")}
+            </Link>
+
+            <div className="flex-1 min-w-0 text-center">
+              <h2
+                className="truncate font-display font-extrabold text-base"
+                style={{ color: isDark ? "#F8FAFC" : "#0F172A" }}
+              >
+                {categoryIcon} {categoryTitle}
+              </h2>
+            </div>
+
+            <div className="flex items-center gap-3">
+              {state.difficulty === "hard" && state.phase === "playing" && (
+                <div
+                  className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg"
+                  style={{ background: "rgba(239,68,68,0.15)", color: "#EF4444" }}
+                >
+                  <Clock size={12} />
+                  <span className="font-display font-bold text-sm">{timerDisplay}</span>
+                </div>
+              )}
+              <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-border">
+                <Star size={12} style={{ color: "#D4AF37" }} />
+                <span
+                  className="font-display font-bold text-sm"
+                  style={{ color: isDark ? "#F8FAFC" : "#0F172A" }}
+                >
+                  {placedCount}/10
+                </span>
+              </div>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="flex items-center gap-1 px-2.5 py-1 rounded-lg border border-border text-xs transition-all hover:border-primary hover:text-primary font-display font-semibold"
+                style={{ color: isDark ? "#94A3B8" : "#64748B" }}
+              >
+                <RotateCcw size={12} /> {t("reset")}
+              </button>
+            </div>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            {state.difficulty === "hard" && (
-              <Badge variant="outline">{t("hardMode")}</Badge>
-            )}
-            {mode === "daily" && !state.isFirstDailyAttempt && (
-              <Badge variant="secondary">{t("replayNotice")}</Badge>
-            )}
-            <InteractionToggle
-              mode={state.interactionMode}
-              onChange={setInteractionMode}
+
+          <div
+            className="h-1 w-full"
+            style={{
+              background: isDark ? "rgba(30,41,59,0.8)" : "rgba(226,232,240,0.8)",
+            }}
+          >
+            <motion.div
+              className="h-full rounded-full"
+              style={{
+                background: "linear-gradient(90deg, #B8960C, #D4AF37, #F0D060)",
+              }}
+              animate={{ width: `${placedCount * 10}%` }}
+              transition={{ type: "spring", stiffness: 300 }}
             />
           </div>
         </div>
 
-        {state.difficulty === "hard" && state.phase === "playing" && (
-          <GameTimer remainingMs={state.timerRemainingMs} />
-        )}
-
-        {state.interactionMode === "select" && state.phase === "playing" && (
-          <p className="text-sm text-muted-foreground" role="status">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-4">
+          <div
+            className="flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm"
+            style={{
+              borderColor: "rgba(212,175,55,0.2)",
+              background: "rgba(212,175,55,0.06)",
+              color: isDark ? "#94A3B8" : "#64748B",
+            }}
+          >
+            <ArrowUpDown size={13} style={{ color: "#D4AF37", flexShrink: 0 }} />
             {t("selectHint")}
-          </p>
-        )}
+          </div>
+        </div>
 
         <DndContext
           sensors={sensors}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
-          <div className="grid gap-8 lg:grid-cols-[2fr_3fr]">
-            <ItemPool
-              items={state.pool}
-              interactionMode={state.interactionMode}
-              selectedItemId={state.selectedItemId}
-              onItemSelect={handleItemSelect}
-            />
-            <div className="space-y-2" role="list" aria-label={t("rankingSlots")}>
-              {state.slots.map((item, index) => (
-                <RankingSlot
-                  key={index}
-                  index={index}
-                  item={item}
-                  interactionMode={state.interactionMode}
-                  selectedItemId={state.selectedItemId}
-                  onSlotClick={handleSlotClick}
-                  onItemSelect={handleItemSelect}
-                  hasSelection={state.selectedItemId !== null}
-                />
-              ))}
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-6 grid lg:grid-cols-2 gap-6">
+            <div>
+              <h3
+                className="mb-3 flex items-center gap-2 font-display font-bold text-[0.85rem] tracking-widest"
+                style={{ color: isDark ? "#94A3B8" : "#64748B" }}
+              >
+                <Trophy size={14} style={{ color: "#D4AF37" }} />
+                {t("rank").toUpperCase()}
+              </h3>
+              <div className="space-y-2" role="list" aria-label={t("rankingSlots")}>
+                {state.slots.map((item, index) => (
+                  <RankingSlot
+                    key={index}
+                    index={index}
+                    item={item}
+                    categoryType={category.type}
+                    selectedItemId={state.selectedItemId}
+                    onSlotClick={handleSlotClick}
+                    onItemSelect={handleItemSelect}
+                    hasSelection={state.selectedItemId !== null}
+                    selectedItemName={selectedItemName}
+                  />
+                ))}
+              </div>
             </div>
+
+            {state.phase === "playing" && (
+              <ItemPool
+                items={state.pool}
+                categoryType={category.type}
+                selectedItemId={state.selectedItemId}
+                onItemSelect={handleItemSelect}
+                onSubmit={requestSubmit}
+                placedCount={placedCount}
+              />
+            )}
           </div>
 
           <DragOverlay>
-            {activeItem ? <ItemCard item={activeItem} isDragging /> : null}
+            {activeItem ? (
+              <DraggableItem
+                item={activeItem}
+                source="pool"
+                categoryType={category.type}
+                variant="pool"
+              />
+            ) : null}
           </DragOverlay>
         </DndContext>
-
-        {state.phase === "playing" && (
-          <div className="flex justify-center pt-4">
-            <Button size="lg" onClick={requestSubmit}>
-              {tCommon("submit")}
-            </Button>
-          </div>
-        )}
-
-        {state.score && (
-          <ScoreBreakdown score={state.score} />
-        )}
       </div>
 
       <Dialog open={confirmSubmitOpen} onOpenChange={setConfirmSubmitOpen}>
-        <DialogContent>
+        <DialogContent className="glass-card">
           <DialogHeader>
             <DialogTitle>{t("confirmSubmit")}</DialogTitle>
             <DialogDescription>
@@ -284,7 +388,12 @@ export function GameBoard({
             <Button variant="outline" onClick={() => setConfirmSubmitOpen(false)}>
               {tCommon("cancel")}
             </Button>
-            <Button onClick={() => { setConfirmSubmitOpen(false); handleSubmit(); }}>
+            <Button
+              onClick={() => {
+                setConfirmSubmitOpen(false);
+                handleSubmit();
+              }}
+            >
               {tCommon("submit")}
             </Button>
           </div>

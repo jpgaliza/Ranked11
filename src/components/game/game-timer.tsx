@@ -19,15 +19,15 @@ export function GameTimer({ remainingMs }: GameTimerProps) {
   return (
     <div
       className={cn(
-        "sticky top-16 z-30 flex items-center justify-center gap-2 border-b border-border bg-background/90 py-2 backdrop-blur-md",
+        "mb-2 flex shrink-0 items-center justify-center gap-1.5 text-sm",
         isLow && "text-destructive",
       )}
       role="timer"
       aria-live="polite"
       aria-label={t("timer")}
     >
-      <Clock className="h-5 w-5" aria-hidden />
-      <span className="text-xl font-bold tabular-nums">{seconds}s</span>
+      <Clock className="h-4 w-4" aria-hidden />
+      <span className="text-lg font-bold tabular-nums">{seconds}s</span>
     </div>
   );
 }
