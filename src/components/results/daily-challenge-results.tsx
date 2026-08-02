@@ -87,7 +87,13 @@ export function DailyChallengeResults({
   const scoreRatio = totalScore / maxScore;
   const displayScore = Math.round(scoreRatio * 10);
   const dailyRank =
-    displayScore >= 9 ? 24 : displayScore >= 7 ? 156 : displayScore >= 5 ? 892 : 2341;
+    displayScore >= 9
+      ? 24
+      : displayScore >= 7
+        ? 156
+        : displayScore >= 5
+          ? 892
+          : 2341;
   const xpProgress = Math.min(scoreRatio * 100, 100);
   const grade = getScoreGrade(totalScore);
   const scoreResult = payload?.scoreResult;
@@ -130,7 +136,10 @@ export function DailyChallengeResults({
 
   return (
     <div className="min-h-[calc(100dvh-4rem)] pb-12">
-      <div aria-hidden className="pointer-events-none fixed left-[-9999px] top-0">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed left-[-9999px] top-0"
+      >
         <ShareResultCard
           ref={shareCardRef}
           mode="daily"
@@ -177,14 +186,9 @@ export function DailyChallengeResults({
               {categoryTitle}
             </p>
           ) : null}
-          <p
-            className="mt-2 text-xs italic"
-            style={{ color: isDark ? "#64748B" : "#94A3B8" }}
-          >
-            {t("previewNotice")}
-          </p>
         </motion.div>
 
+        {/* TODO: Uncomment when ranking system is ready - Today's rank position
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -290,6 +294,7 @@ export function DailyChallengeResults({
             </div>
           </div>
         </motion.div>
+        */}
 
         {hasRankingData && category && payload ? (
           <>
@@ -349,7 +354,10 @@ export function DailyChallengeResults({
                     }}
                   >
                     <Icon size={18} style={{ color, margin: "0 auto 4px" }} />
-                    <div className="font-display font-black text-2xl" style={{ color }}>
+                    <div
+                      className="font-display font-black text-2xl"
+                      style={{ color }}
+                    >
                       {val}
                     </div>
                     <div
@@ -365,6 +373,7 @@ export function DailyChallengeResults({
           </>
         ) : null}
 
+        {/* TODO: Uncomment when XP system is ready - XP Progress
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -416,7 +425,9 @@ export function DailyChallengeResults({
             {t("xpNote")}
           </p>
         </motion.div>
+        */}
 
+        {/* TODO: Uncomment when global leaderboard is ready - Global Leaderboard
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
@@ -508,6 +519,7 @@ export function DailyChallengeResults({
             </motion.div>
           ))}
         </motion.div>
+        */}
 
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -543,7 +555,9 @@ export function DailyChallengeResults({
                     : "rgba(15,23,42,0.06)",
                 }}
               >
-                <div className="gold-text font-display font-black text-3xl">{val}</div>
+                <div className="gold-text font-display font-black text-3xl">
+                  {val}
+                </div>
                 <div
                   className="text-[0.6rem] font-display tracking-widest"
                   style={{ color: isDark ? "#475569" : "#94A3B8" }}
@@ -573,7 +587,8 @@ export function DailyChallengeResults({
               cursor: isGenerating ? "not-allowed" : "pointer",
             }}
           >
-            <Share2 size={16} /> {isGenerating ? t("shareGenerating") : t("share")}
+            <Share2 size={16} />{" "}
+            {isGenerating ? t("shareGenerating") : t("share")}
           </button>
           <Link
             href="/"

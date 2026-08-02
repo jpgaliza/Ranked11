@@ -18,12 +18,38 @@ import { useIsDark } from "@/hooks/use-is-dark";
 import type { CategoryDefinition } from "@/types/category";
 import type { ResultPayload } from "@/lib/storage/result-payload-store";
 import { formatScore } from "@/lib/utils/format-score";
-import { buildShareResultRows } from "@/lib/share/build-share-result-rows";
-import { getScoreGrade } from "@/lib/share/score-grades";
-import { ShareResultCard } from "@/components/results/share/share-result-card";
-import { ShareImagePreviewDialog } from "@/components/results/share/share-image-preview-dialog";
-import { ResultsRankingComparison } from "@/components/results/results-ranking-comparison";
-import { useShareResultImage } from "@/hooks/use-share-result-image";
+import { ResultsRankingComparison } from "./results-ranking-comparison";
+
+const SCORE_GRADES = [
+  {
+    min: 95,
+    key: "perfectMsg",
+    color: "#D4AF37",
+    emoji: "🏆",
+    bgClass: "from-yellow-400 to-amber-600",
+  },
+  {
+    min: 75,
+    key: "greatMsg",
+    color: "#22C55E",
+    emoji: "🌟",
+    bgClass: "from-green-400 to-green-600",
+  },
+  {
+    min: 50,
+    key: "goodMsg",
+    color: "#3B82F6",
+    emoji: "⚡",
+    bgClass: "from-blue-400 to-blue-600",
+  },
+  {
+    min: 0,
+    key: "keepMsg",
+    color: "#94A3B8",
+    emoji: "💪",
+    bgClass: "from-slate-400 to-slate-600",
+  },
+] as const;
 
 interface CategoryResultsScreenProps {
   category: CategoryDefinition;
@@ -46,15 +72,7 @@ export function CategoryResultsScreen({
   const scoreResult = payload.scoreResult;
   const totalScore = scoreResult?.totalScore ?? urlScore;
   const maxScore = scoreResult?.maxScore ?? 100;
-  const grade = getScoreGrade(totalScore);
-  const gradeBgClass =
-    totalScore >= 95
-      ? "from-yellow-400 to-amber-600"
-      : totalScore >= 75
-        ? "from-green-400 to-green-600"
-        : totalScore >= 50
-          ? "from-blue-400 to-blue-600"
-          : "from-slate-400 to-slate-600";
+  const grade = SCORE_GRADES.find((g) => totalScore >= g.min)!;
   const correctCount =
     scoreResult?.itemScores.filter((i) => i.difference === 0).length ?? 0;
   const wrongCount = 10 - correctCount;
@@ -79,63 +97,20 @@ export function CategoryResultsScreen({
     }
   }, [totalScore]);
 
-  const playerOrder = payload.playerOrder;
-  const correctOrder = category.correctOrder;
-  const {
-    shareCardRef,
-    isGenerating,
-    previewOpen,
-    previewImageUrl,
-    generatePreview,
-    closePreview,
-    downloadPreview,
-  } = useShareResultImage();
-
-  const shareRows = buildShareResultRows(category, playerOrder, getName);
-  const shareLabels = {
-    dailyChallenge: t("dailyTitle"),
-    yourRanking: t("yourRanking"),
-    correctAnswer: t("correct"),
-    position: t("position").toUpperCase(),
-    correct: t("correctLabel"),
-    wrong: t("wrongLabel"),
-    totalScore: t("totalScore"),
-    yourRankToday: t("yourRankToday"),
-  };
-
-  const handleShare = async () => {
-    const success = await generatePreview({
-      mode: "category",
-      totalScore,
-    });
-
-    if (!success) {
-      window.alert(t("shareFailed"));
+  const handleShare = () => {
+    const text = `🏆 Ranked11 - ${categoryTitle}\nMy score: ${formatScore(totalScore)}/100\nPlay at ranked11.app`;
+    if (navigator.share) {
+      navigator.share({ title: "Ranked11", text }).catch(() => {});
+    } else {
+      navigator.clipboard?.writeText(text);
     }
   };
 
+  const playerOrder = payload.playerOrder;
+  const correctOrder = category.correctOrder;
+
   return (
     <div className="min-h-[calc(100dvh-4rem)] pb-12">
-      <div
-        aria-hidden
-        className="pointer-events-none fixed left-[-9999px] top-0"
-      >
-        <ShareResultCard
-          ref={shareCardRef}
-          mode="category"
-          categoryTitle={categoryTitle}
-          gradeMessage={t(grade.key)}
-          gradeColor={grade.color}
-          gradeEmoji={grade.emoji}
-          totalScore={totalScore}
-          maxScore={maxScore}
-          correctCount={correctCount}
-          wrongCount={wrongCount}
-          rows={shareRows}
-          labels={shareLabels}
-        />
-      </div>
-
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -149,7 +124,7 @@ export function CategoryResultsScreen({
               : "rgba(255,255,255,0.97)",
           }}
         >
-          <div className={`h-2 w-full bg-gradient-to-r ${gradeBgClass}`} />
+          <div className={`h-2 w-full bg-linear-to-r ${grade.bgClass}`} />
           <div className="p-8 text-center">
             <div className="text-5xl mb-3">{grade.emoji}</div>
             <div
@@ -302,17 +277,14 @@ export function CategoryResultsScreen({
           <button
             type="button"
             onClick={handleShare}
-            disabled={isGenerating}
-            className="flex-1 py-3.5 rounded-xl flex items-center justify-center gap-2 border transition-all font-display font-bold tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
+            className="flex-1 py-3.5 rounded-xl flex items-center justify-center gap-2 border transition-all font-display font-bold tracking-wider"
             style={{
               borderColor: "rgba(212,175,55,0.4)",
               background: "rgba(212,175,55,0.1)",
               color: "#D4AF37",
-              cursor: isGenerating ? "not-allowed" : "pointer",
             }}
           >
-            <Share2 size={16} />{" "}
-            {isGenerating ? t("shareGenerating") : t("share")}
+            <Share2 size={16} /> {t("share")}
           </button>
           <Link
             href="/"
@@ -325,13 +297,6 @@ export function CategoryResultsScreen({
             <Home size={16} /> {t("home")}
           </Link>
         </motion.div>
-
-        <ShareImagePreviewDialog
-          open={previewOpen}
-          imageUrl={previewImageUrl}
-          onClose={closePreview}
-          onDownload={downloadPreview}
-        />
       </div>
     </div>
   );

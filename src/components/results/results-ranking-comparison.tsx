@@ -5,9 +5,7 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useIsDark } from "@/hooks/use-is-dark";
 import type { CategoryDefinition } from "@/types/category";
-import { isSlotCorrect } from "@/lib/game/scoring";
 import { toRankingItemDisplay } from "@/lib/view-models/category-display";
-import { CountryFlag } from "@/components/ui/country-flag";
 
 interface ResultsRankingComparisonProps {
   category: CategoryDefinition;
@@ -70,12 +68,7 @@ export function ResultsRankingComparison({
         const playerDisplay = playerItem
           ? toRankingItemDisplay(playerItem, getName, category.type, true)
           : null;
-        const isRight = isSlotCorrect(
-          i,
-          playerOrder,
-          correctOrder,
-          category.items,
-        );
+        const isRight = playerId === correctId;
 
         return (
           <motion.div
@@ -115,14 +108,10 @@ export function ResultsRankingComparison({
               {playerDisplay ? (
                 <>
                   <div
-                    className="flex min-w-0 items-center gap-1.5 truncate font-display text-sm font-bold"
+                    className="truncate font-display font-bold text-sm"
                     style={{ color: isRight ? "#22C55E" : "#EF4444" }}
                   >
-                    <CountryFlag
-                      code={playerDisplay.countryCode}
-                      className="h-3.5 aspect-[3/2] w-auto shrink-0"
-                    />
-                    <span className="truncate">{playerDisplay.name}</span>
+                    {playerDisplay.flag} {playerDisplay.name}
                   </div>
                   <div
                     className="text-[0.65rem]"
@@ -145,14 +134,10 @@ export function ResultsRankingComparison({
 
             <div className="min-w-0">
               <div
-                className="flex min-w-0 items-center gap-1.5 truncate font-display text-sm font-bold"
+                className="truncate font-display font-bold text-sm"
                 style={{ color: isDark ? "#F8FAFC" : "#0F172A" }}
               >
-                <CountryFlag
-                  code={correctDisplay.countryCode}
-                  className="h-3.5 aspect-[3/2] w-auto shrink-0"
-                />
-                <span className="truncate">{correctDisplay.name}</span>
+                {correctDisplay.flag} {correctDisplay.name}
               </div>
               <div
                 className="text-[0.65rem]"
