@@ -7,8 +7,6 @@ import {
   ChevronRight,
   Flame,
   Clock,
-  Users,
-  Star,
   Play,
   Zap,
 } from "lucide-react";

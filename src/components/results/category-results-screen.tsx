@@ -107,7 +107,6 @@ export function CategoryResultsScreen({
   };
 
   const playerOrder = payload.playerOrder;
-  const correctOrder = category.correctOrder;
 
   return (
     <div className="min-h-[calc(100dvh-4rem)] pb-12">

@@ -41,7 +41,7 @@ import {
 import { CategoryReveal } from "./category-reveal";
 import { RankingSlot } from "./ranking-slots";
 import { ItemPool } from "./item-pool";
-import { DraggableItem, DragItemOverlay } from "./draggable-item";
+import { DragItemOverlay } from "./draggable-item";
 
 interface GameBoardProps {
   category: CategoryDefinition;
