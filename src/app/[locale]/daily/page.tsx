@@ -21,13 +21,15 @@ export default async function DailyPage({
   const description = t(`${category.i18nKey}.description`);
 
   return (
-    <GameBoard
-      category={category}
-      mode="daily"
-      difficulty="normal"
-      categoryTitle={title}
-      categoryDescription={description}
-      showReveal
-    />
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+      <GameBoard
+        category={category}
+        mode="daily"
+        difficulty="hard"
+        categoryTitle={title}
+        categoryDescription={description}
+        showReveal
+      />
+    </div>
   );
 }

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { DailyChallengeHero } from "@/components/home/daily-challenge-hero";
-import { Link } from "@/i18n/navigation";
-import { Button } from "@/components/ui/button";
+import { getManifestEntries } from "@/lib/categories/registry";
+import { getCategoryDifficulty } from "@/lib/view-models/category-display";
+import { HomePage } from "@/components/home/home-page";
 
 export async function generateMetadata({
   params,
@@ -11,31 +11,38 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
-  return {
-    title: t("metaTitle"),
-    description: t("metaDescription"),
-  };
+  return { title: t("metaTitle"), description: t("metaDescription") };
 }
 
-export default async function HomePage({
+export default async function Page({
   params,
 }: {
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations("home");
+  const t = await getTranslations();
 
-  return (
-    <div>
-      <DailyChallengeHero />
-      <section className="mx-auto max-w-4xl px-4 pb-16 text-center sm:px-6">
-        <h2 className="mb-4 text-2xl font-bold">{t("exploreCategories")}</h2>
-        <p className="mb-6 text-muted-foreground">{t("exploreDescription")}</p>
-        <Button asChild variant="outline" size="lg">
-          <Link href="/categories">{t("browseCategories")}</Link>
-        </Button>
-      </section>
-    </div>
-  );
+  const featured = getManifestEntries()
+    .filter((e) => e.featured)
+    .slice(0, 4)
+    .map((entry) => ({
+      id: entry.id,
+      title: t(`${entry.i18nKey}.title`),
+      description: t(`${entry.i18nKey}.description`),
+      difficulty: getCategoryDifficulty(entry.type),
+      type: entry.type,
+    }));
+
+  const fallback = getManifestEntries()
+    .slice(0, 4)
+    .map((entry) => ({
+      id: entry.id,
+      title: t(`${entry.i18nKey}.title`),
+      description: t(`${entry.i18nKey}.description`),
+      difficulty: getCategoryDifficulty(entry.type),
+      type: entry.type,
+    }));
+
+  return <HomePage featured={featured.length >= 4 ? featured : fallback} />;
 }

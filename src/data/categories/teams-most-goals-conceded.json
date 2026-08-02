@@ -2,17 +2,17 @@
   "id": "teams-most-goals-conceded",
   "type": "team",
   "i18nKey": "categories.teamsMostGoalsConceded",
-  "correctOrder": ["germany", "brazil", "mexico", "argentina", "italy", "france", "england", "spain", "netherlands", "belgium"],
+  "correctOrder": ["germany", "brazil", "mexico", "argentina", "italy", "france", "spain", "england", "netherlands", "belgium"],
   "items": {
-    "germany": { "id": "germany", "statValue": 125, "metadata": { "countryCode": "DE" } },
-    "brazil": { "id": "brazil", "statValue": 105, "metadata": { "countryCode": "BR" } },
-    "mexico": { "id": "mexico", "statValue": 97, "metadata": { "countryCode": "MX" } },
-    "argentina": { "id": "argentina", "statValue": 85, "metadata": { "countryCode": "AR" } },
+    "germany": { "id": "germany", "statValue": 130, "metadata": { "countryCode": "DE" } },
+    "brazil": { "id": "brazil", "statValue": 110, "metadata": { "countryCode": "BR" } },
+    "mexico": { "id": "mexico", "statValue": 103, "metadata": { "countryCode": "MX" } },
+    "argentina": { "id": "argentina", "statValue": 91, "metadata": { "countryCode": "AR" } },
     "italy": { "id": "italy", "statValue": 82, "metadata": { "countryCode": "IT" } },
-    "france": { "id": "france", "statValue": 78, "metadata": { "countryCode": "FR" } },
-    "england": { "id": "england", "statValue": 72, "metadata": { "countryCode": "GB" } },
-    "spain": { "id": "spain", "statValue": 70, "metadata": { "countryCode": "ES" } },
-    "netherlands": { "id": "netherlands", "statValue": 68, "metadata": { "countryCode": "NL" } },
-    "belgium": { "id": "belgium", "statValue": 65, "metadata": { "countryCode": "BE" } }
+    "france": { "id": "france", "statValue": 82, "metadata": { "countryCode": "FR" } },
+    "spain": { "id": "spain", "statValue": 76, "metadata": { "countryCode": "ES" } },
+    "england": { "id": "england", "statValue": 75, "metadata": { "countryCode": "GB" } },
+    "netherlands": { "id": "netherlands", "statValue": 73, "metadata": { "countryCode": "NL" } },
+    "belgium": { "id": "belgium", "statValue": 68, "metadata": { "countryCode": "BE" } }
   }
 }

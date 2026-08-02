@@ -10,9 +10,9 @@
     "south-africa": { "id": "south-africa", "statValue": 3, "metadata": { "countryCode": "ZA" } },
     "honduras": { "id": "honduras", "statValue": 3, "metadata": { "countryCode": "HN" } },
     "new-zealand": { "id": "new-zealand", "statValue": 3, "metadata": { "countryCode": "NZ" } },
-    "qatar": { "id": "qatar", "statValue": 1, "metadata": { "countryCode": "QA" } },
+    "qatar": { "id": "qatar", "statValue": 2, "metadata": { "countryCode": "QA" } },
+    "canada": { "id": "canada", "statValue": 2, "metadata": { "countryCode": "CA" } },
     "china": { "id": "china", "statValue": 1, "metadata": { "countryCode": "CN" } },
-    "haiti": { "id": "haiti", "statValue": 1, "metadata": { "countryCode": "HT" } },
-    "canada": { "id": "canada", "statValue": 1, "metadata": { "countryCode": "CA" } }
+    "haiti": { "id": "haiti", "statValue": 1, "metadata": { "countryCode": "HT" } }
   }
 }

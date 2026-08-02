@@ -2,17 +2,17 @@
   "id": "teams-most-wins",
   "type": "team",
   "i18nKey": "categories.teamsMostWins",
-  "correctOrder": ["brazil", "germany", "italy", "argentina", "netherlands", "france", "england", "spain", "uruguay", "belgium"],
+  "correctOrder": ["brazil", "germany", "argentina", "italy", "france", "england", "spain", "netherlands", "uruguay", "belgium"],
   "items": {
-    "brazil": { "id": "brazil", "statValue": 76, "metadata": { "countryCode": "BR" } },
-    "germany": { "id": "germany", "statValue": 68, "metadata": { "countryCode": "DE" } },
+    "brazil": { "id": "brazil", "statValue": 78, "metadata": { "countryCode": "BR" } },
+    "germany": { "id": "germany", "statValue": 70, "metadata": { "countryCode": "DE" } },
+    "argentina": { "id": "argentina", "statValue": 51, "metadata": { "countryCode": "AR" } },
     "italy": { "id": "italy", "statValue": 45, "metadata": { "countryCode": "IT" } },
-    "argentina": { "id": "argentina", "statValue": 47, "metadata": { "countryCode": "AR" } },
-    "netherlands": { "id": "netherlands", "statValue": 30, "metadata": { "countryCode": "NL" } },
-    "france": { "id": "france", "statValue": 39, "metadata": { "countryCode": "FR" } },
-    "england": { "id": "england", "statValue": 32, "metadata": { "countryCode": "GB" } },
-    "spain": { "id": "spain", "statValue": 30, "metadata": { "countryCode": "ES" } },
-    "uruguay": { "id": "uruguay", "statValue": 24, "metadata": { "countryCode": "UY" } },
-    "belgium": { "id": "belgium", "statValue": 20, "metadata": { "countryCode": "BE" } }
+    "france": { "id": "france", "statValue": 43, "metadata": { "countryCode": "FR" } },
+    "england": { "id": "england", "statValue": 35, "metadata": { "countryCode": "GB" } },
+    "spain": { "id": "spain", "statValue": 33, "metadata": { "countryCode": "ES" } },
+    "netherlands": { "id": "netherlands", "statValue": 33, "metadata": { "countryCode": "NL" } },
+    "uruguay": { "id": "uruguay", "statValue": 25, "metadata": { "countryCode": "UY" } },
+    "belgium": { "id": "belgium", "statValue": 21, "metadata": { "countryCode": "BE" } }
   }
 }
