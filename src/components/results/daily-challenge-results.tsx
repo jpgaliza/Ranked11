@@ -3,15 +3,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import {
-  Trophy,
   Clock,
-  Flame,
   Share2,
   Home,
   Medal,
   Star,
-  TrendingUp,
-  Users,
   CheckCircle,
   XCircle,
   Zap,
@@ -19,8 +15,6 @@ import {
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useIsDark } from "@/hooks/use-is-dark";
-import { LEADERBOARD } from "@/data/leaderboard-mock";
-import { CountryFlag } from "@/components/ui/country-flag";
 import { formatScore } from "@/lib/utils/format-score";
 import type { CategoryDefinition } from "@/types/category";
 import type { ResultPayload } from "@/lib/storage/result-payload-store";

@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { useIsDark } from "@/hooks/use-is-dark";
 import type { CategoryDefinition } from "@/types/category";
 import { toRankingItemDisplay } from "@/lib/view-models/category-display";
+import { CountryFlag } from "@/components/ui/country-flag";
 
 interface ResultsRankingComparisonProps {
   category: CategoryDefinition;
@@ -108,10 +109,16 @@ export function ResultsRankingComparison({
               {playerDisplay ? (
                 <>
                   <div
-                    className="truncate font-display font-bold text-sm"
+                    className="flex min-w-0 items-center gap-1.5 truncate font-display text-sm font-bold"
                     style={{ color: isRight ? "#22C55E" : "#EF4444" }}
                   >
-                    {playerDisplay.flag} {playerDisplay.name}
+                    {playerDisplay.countryCode && (
+                      <CountryFlag
+                        code={playerDisplay.countryCode}
+                        className="h-3.5 aspect-3/2 w-auto shrink-0"
+                      />
+                    )}
+                    <span className="truncate">{playerDisplay.name}</span>
                   </div>
                   <div
                     className="text-[0.65rem]"
@@ -134,10 +141,16 @@ export function ResultsRankingComparison({
 
             <div className="min-w-0">
               <div
-                className="truncate font-display font-bold text-sm"
+                className="flex min-w-0 items-center gap-1.5 truncate font-display text-sm font-bold"
                 style={{ color: isDark ? "#F8FAFC" : "#0F172A" }}
               >
-                {correctDisplay.flag} {correctDisplay.name}
+                {correctDisplay.countryCode && (
+                  <CountryFlag
+                    code={correctDisplay.countryCode}
+                    className="h-3.5 aspect-3/2 w-auto shrink-0"
+                  />
+                )}
+                <span className="truncate">{correctDisplay.name}</span>
               </div>
               <div
                 className="text-[0.65rem]"
