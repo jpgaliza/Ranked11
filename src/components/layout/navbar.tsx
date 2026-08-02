@@ -1,8 +1,19 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Sun, Moon, Globe, Trophy, Menu, X, Layers, Home, Medal } from "lucide-react";
+import {
+  Sun,
+  Moon,
+  Globe,
+  Trophy,
+  Menu,
+  X,
+  Layers,
+  Home,
+  Medal,
+} from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useTheme } from "next-themes";
@@ -26,11 +37,26 @@ export function Navbar() {
   const isDark = useIsDark();
   const [menuOpen, setMenuOpen] = useState(false);
   const currentScreen = getActiveScreen(pathname);
+  const showLeaderboardNav = false;
 
   const navItems = [
     { id: "home", href: "/", label: t("home"), icon: Home },
-    { id: "categories", href: "/categories", label: t("categories"), icon: Layers },
-    { id: "leaderboard", href: "/leaderboard", label: t("leaderboard"), icon: Trophy },
+    {
+      id: "categories",
+      href: "/categories",
+      label: t("categories"),
+      icon: Layers,
+    },
+    ...(showLeaderboardNav
+      ? [
+          {
+            id: "leaderboard",
+            href: "/leaderboard",
+            label: t("leaderboard"),
+            icon: Trophy,
+          },
+        ]
+      : []),
   ] as const;
 
   const toggleLanguage = () => {
@@ -46,12 +72,14 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div
-            className="w-8 h-8 rounded-lg flex items-center justify-center gold-glow"
-            style={{ background: "linear-gradient(135deg, #B8960C, #D4AF37, #F0D060)" }}
-          >
-            <span className="font-display font-black text-sm text-[#0F172A]">11</span>
-          </div>
+          <Image
+            src="/logo.svg"
+            alt="Ranked11"
+            width={32}
+            height={32}
+            className="h-8 w-8"
+            priority
+          />
           <span className="gold-text hidden sm:block font-display font-bold text-xl tracking-wider">
             RANKED11
           </span>
@@ -72,7 +100,9 @@ export function Navbar() {
                 <motion.div
                   layoutId="nav-indicator"
                   className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full"
-                  style={{ background: "linear-gradient(90deg, #D4AF37, #F0D060)" }}
+                  style={{
+                    background: "linear-gradient(90deg, #D4AF37, #F0D060)",
+                  }}
                 />
               )}
             </Link>
@@ -103,7 +133,9 @@ export function Navbar() {
               role="tooltip"
               className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2.5 py-1 text-[0.65rem] font-display font-semibold tracking-wide opacity-0 transition-opacity duration-150 group-hover:opacity-100"
               style={{
-                background: isDark ? "rgba(15,23,42,0.95)" : "rgba(255,255,255,0.98)",
+                background: isDark
+                  ? "rgba(15,23,42,0.95)"
+                  : "rgba(255,255,255,0.98)",
                 color: isDark ? "#CBD5E1" : "#475569",
                 border: "1px solid rgba(212,175,55,0.25)",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
@@ -115,7 +147,9 @@ export function Navbar() {
           <div className="relative group">
             <button
               type="button"
-              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+              onClick={() =>
+                setTheme(resolvedTheme === "dark" ? "light" : "dark")
+              }
               title={isDark ? t("switchToLight") : t("switchToDark")}
               aria-label={isDark ? t("switchToLight") : t("switchToDark")}
               className="w-9 h-9 rounded-lg border border-border flex items-center justify-center transition-all hover:border-primary hover:text-primary cursor-pointer"
@@ -127,7 +161,9 @@ export function Navbar() {
               role="tooltip"
               className="pointer-events-none absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md px-2.5 py-1 text-[0.65rem] font-display font-semibold tracking-wide opacity-0 transition-opacity duration-150 group-hover:opacity-100"
               style={{
-                background: isDark ? "rgba(15,23,42,0.95)" : "rgba(255,255,255,0.98)",
+                background: isDark
+                  ? "rgba(15,23,42,0.95)"
+                  : "rgba(255,255,255,0.98)",
                 color: isDark ? "#CBD5E1" : "#475569",
                 border: "1px solid rgba(212,175,55,0.25)",
                 boxShadow: "0 4px 12px rgba(0,0,0,0.12)",

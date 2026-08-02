@@ -43,9 +43,13 @@ export function RankingSlot({
   const { setNodeRef, isOver } = useDroppable({ id: `slot-${index}` });
   const rank = index + 1;
   const isSelected = item && selectedItemId === item.id;
+  const placeholderColor = isDark ? "#64748B" : "#94A3B8";
 
   return (
-    <div ref={setNodeRef} className={cn(isOver && "ring-2 ring-primary rounded-xl")}>
+    <div
+      ref={setNodeRef}
+      className={cn("min-h-0 md:h-full", isOver && "ring-2 ring-primary rounded-lg")}
+    >
       <motion.div
         layout
         onClick={() => {
@@ -56,7 +60,7 @@ export function RankingSlot({
           }
         }}
         whileTap={{ scale: 0.98 }}
-        className="relative flex items-center gap-3 px-4 py-3 rounded-xl border cursor-pointer transition-all duration-200"
+        className="relative flex min-h-10 cursor-pointer items-center gap-2 rounded-lg border px-2.5 py-2.5 transition-all duration-200 md:min-h-0 md:h-full md:gap-2 md:px-2 md:py-0 lg:gap-2.5 lg:px-3"
         style={{
           borderColor: isSelected
             ? "#D4AF37"
@@ -81,7 +85,8 @@ export function RankingSlot({
       >
         <div
           className={cn(
-            "w-8 h-8 rounded-lg flex items-center justify-center text-xs font-black bg-gradient-to-br shrink-0 font-display",
+            "flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-gradient-to-br text-[8px] font-black font-display",
+            "md:h-7 md:w-7 md:rounded-lg md:text-[10px] lg:h-8 lg:w-8 lg:text-xs",
             RANK_COLORS[index],
           )}
           style={{ color: index < 3 ? "#0F172A" : "#F8FAFC" }}
@@ -101,15 +106,16 @@ export function RankingSlot({
           />
         ) : (
           <div
-            className="flex-1 text-xs italic"
-            style={{ color: isDark ? "#334155" : "#CBD5E1" }}
+            className="min-w-0 flex-1 truncate font-display text-sm leading-tight md:text-base lg:text-lg md:font-normal md:italic"
+            style={{ color: placeholderColor }}
           >
             {hasSelection && selectedItemName ? (
-              <span style={{ color: isDark ? "#64748B" : "#94A3B8", fontStyle: "normal" }}>
-                {t("clickToPlace", { name: selectedItemName })}
-              </span>
+              <span style={{ fontStyle: "normal" }}>{t("clickToPlace", { name: selectedItemName })}</span>
             ) : (
-              <span>{RANK_LABELS[index]} place</span>
+              <span>
+                {RANK_LABELS[index]}
+                <span className="max-md:hidden"> place</span>
+              </span>
             )}
           </div>
         )}

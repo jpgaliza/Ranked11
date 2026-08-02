@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { Medal } from "lucide-react";
+import { Clock, Medal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
   Dialog,
@@ -11,6 +11,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useIsDark } from "@/hooks/use-is-dark";
+import { cn } from "@/lib/utils/cn";
 
 interface CategoryRevealProps {
   open: boolean;
@@ -34,7 +35,10 @@ export function CategoryReveal({
   return (
     <Dialog open={open}>
       <DialogContent
-        className="glass-daily-card gold-glow sm:max-w-md p-0 gap-0 border-0"
+        className={cn(
+          "gold-glow sm:max-w-md gap-0 border-0 p-0",
+          isDark ? "glass-daily-card" : "border border-border bg-white shadow-lg",
+        )}
         onPointerDownOutside={(e) => e.preventDefault()}
       >
         <div className="relative z-[1] h-1 w-full gold-gradient-btn" />
@@ -52,12 +56,29 @@ export function CategoryReveal({
           </DialogHeader>
 
           <div className="mt-6 space-y-4">
-            <div className="rounded-xl p-4 glass-daily-inset">
-              <h2 className="font-display font-bold text-xl leading-snug" style={{ color: titleColor }}>
+            <div
+              className={cn(
+                "rounded-xl p-4",
+                isDark ? "glass-daily-inset" : "border border-border bg-slate-50",
+              )}
+            >
+              <h2 className="font-display text-xl leading-snug font-bold" style={{ color: titleColor }}>
                 {categoryTitle}
               </h2>
               <p className="mt-2 text-sm leading-relaxed font-medium" style={{ color: bodyColor }}>
                 {categoryDescription}
+              </p>
+            </div>
+
+            <div
+              className={cn(
+                "flex items-start gap-2.5 rounded-xl border px-3.5 py-3",
+                isDark ? "border-red-500/30 bg-red-500/10" : "border-red-200 bg-red-50",
+              )}
+            >
+              <Clock size={16} className="mt-0.5 shrink-0" style={{ color: "#EF4444" }} />
+              <p className="text-sm leading-relaxed font-medium" style={{ color: isDark ? "#FCA5A5" : "#B91C1C" }}>
+                {t("dailyRevealTimerHint")}
               </p>
             </div>
 

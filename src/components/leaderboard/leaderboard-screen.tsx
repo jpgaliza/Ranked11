@@ -18,6 +18,7 @@ import {
   BADGE_LABELS,
   type LeaderboardPlayer,
 } from "@/data/leaderboard-mock";
+import { CountryFlag } from "@/components/ui/country-flag";
 
 const MOCK_CHANGES = [2, -1, 0, 3, -2, 0, 1, -3, 2, -1];
 
@@ -91,13 +92,18 @@ function PodiumCard({
       </div>
 
       <div
-        className="text-[0.65rem] mb-1.5"
+        className="mb-1.5 flex justify-center"
         style={{ color: isDark ? "#64748B" : "#94A3B8" }}
       >
-        {player.flag}
+        <CountryFlag
+          code={player.countryCode}
+          className="h-4 aspect-[3/2] w-auto"
+        />
       </div>
 
-      <div className={`bg-gradient-to-r ${medalColors[pos]} rounded-lg py-1 px-2`}>
+      <div
+        className={`bg-gradient-to-r ${medalColors[pos]} rounded-lg py-1 px-2`}
+      >
         <div
           className={`font-display font-black ${featured ? "text-lg" : "text-sm"}`}
           style={{ color: "#0F172A" }}
@@ -119,6 +125,9 @@ export function LeaderboardScreen() {
   const t = useTranslations("leaderboard");
   const isDark = useIsDark();
 
+  const showLeaderboardScreen = false;
+  if (!showLeaderboardScreen) return null;
+
   return (
     <div className="min-h-[calc(100dvh-4rem)] pb-12">
       <div
@@ -128,7 +137,10 @@ export function LeaderboardScreen() {
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-10 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
             <div
               className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border mb-4"
               style={{
@@ -144,7 +156,10 @@ export function LeaderboardScreen() {
             <h1 className="gold-text font-display font-black tracking-wide mb-2">
               {t("title")}
             </h1>
-            <p className="text-sm" style={{ color: isDark ? "#64748B" : "#94A3B8" }}>
+            <p
+              className="text-sm"
+              style={{ color: isDark ? "#64748B" : "#94A3B8" }}
+            >
               {t("sub")}
             </p>
             <p
@@ -164,7 +179,12 @@ export function LeaderboardScreen() {
           transition={{ delay: 0.1 }}
           className="grid grid-cols-3 gap-3 mb-8"
         >
-          <PodiumCard player={LEADERBOARD[1]!} pos={2} isDark={isDark} delay={0.2} />
+          <PodiumCard
+            player={LEADERBOARD[1]!}
+            pos={2}
+            isDark={isDark}
+            delay={0.2}
+          />
           <PodiumCard
             player={LEADERBOARD[0]!}
             pos={1}
@@ -172,24 +192,34 @@ export function LeaderboardScreen() {
             delay={0.1}
             featured
           />
-          <PodiumCard player={LEADERBOARD[2]!} pos={3} isDark={isDark} delay={0.3} />
+          <PodiumCard
+            player={LEADERBOARD[2]!}
+            pos={3}
+            isDark={isDark}
+            delay={0.3}
+          />
         </motion.div>
 
         <div
           className="grid gap-3 px-4 py-2 mb-2 hidden sm:grid"
           style={{ gridTemplateColumns: "3rem 1fr 7rem 6rem 4rem 5rem" }}
         >
-          {[t("rank"), t("player"), t("score"), t("streak"), t("change"), t("badge")].map(
-            (h) => (
-              <div
-                key={h}
-                className="font-display font-bold text-[0.7rem] tracking-widest"
-                style={{ color: isDark ? "#475569" : "#94A3B8" }}
-              >
-                {h.toUpperCase()}
-              </div>
-            ),
-          )}
+          {[
+            t("rank"),
+            t("player"),
+            t("score"),
+            t("streak"),
+            t("change"),
+            t("badge"),
+          ].map((h) => (
+            <div
+              key={h}
+              className="font-display font-bold text-[0.7rem] tracking-widest"
+              style={{ color: isDark ? "#475569" : "#94A3B8" }}
+            >
+              {h.toUpperCase()}
+            </div>
+          ))}
         </div>
 
         <div className="space-y-2">
@@ -212,7 +242,9 @@ export function LeaderboardScreen() {
                     : isDark
                       ? "rgba(15,23,42,0.7)"
                       : "rgba(255,255,255,0.8)",
-                  borderColor: isTop3 ? "rgba(212,175,55,0.25)" : "var(--border)",
+                  borderColor: isTop3
+                    ? "rgba(212,175,55,0.25)"
+                    : "var(--border)",
                 }}
               >
                 {isTop3 && (
@@ -220,7 +252,11 @@ export function LeaderboardScreen() {
                     className="absolute left-0 top-0 bottom-0 w-0.5 rounded-l-full"
                     style={{
                       background:
-                        p.rank === 1 ? "#D4AF37" : p.rank === 2 ? "#94A3B8" : "#CD7F32",
+                        p.rank === 1
+                          ? "#D4AF37"
+                          : p.rank === 2
+                            ? "#94A3B8"
+                            : "#CD7F32",
                     }}
                   />
                 )}
@@ -228,7 +264,9 @@ export function LeaderboardScreen() {
                 <div className="flex items-center gap-3 px-4 py-3.5">
                   <div className="w-8 shrink-0 text-center">
                     {p.rank <= 3 ? (
-                      <span className="text-xl">{["🥇", "🥈", "🥉"][p.rank - 1]}</span>
+                      <span className="text-xl">
+                        {["🥇", "🥈", "🥉"][p.rank - 1]}
+                      </span>
                     ) : (
                       <span
                         className="font-display font-extrabold text-lg"
@@ -262,14 +300,21 @@ export function LeaderboardScreen() {
                         {p.name}
                       </span>
                       {p.rank === 1 && (
-                        <Crown size={13} style={{ color: "#D4AF37", flexShrink: 0 }} />
+                        <Crown
+                          size={13}
+                          style={{ color: "#D4AF37", flexShrink: 0 }}
+                        />
                       )}
                     </div>
                     <div
-                      className="text-[0.72rem]"
+                      className="flex items-center gap-1.5 text-[0.72rem]"
                       style={{ color: isDark ? "#64748B" : "#94A3B8" }}
                     >
-                      {p.flag} {p.country}
+                      <CountryFlag
+                        code={p.countryCode}
+                        className="h-3 aspect-[3/2] w-auto shrink-0"
+                      />
+                      {p.country}
                     </div>
                   </div>
 
@@ -287,10 +332,15 @@ export function LeaderboardScreen() {
 
                   <div
                     className="hidden sm:flex items-center gap-1.5 shrink-0 w-20 justify-center px-2 py-1 rounded-lg"
-                    style={{ background: "rgba(34,197,94,0.1)", color: "#22C55E" }}
+                    style={{
+                      background: "rgba(34,197,94,0.1)",
+                      color: "#22C55E",
+                    }}
                   >
                     <Flame size={12} />
-                    <span className="font-display font-bold text-sm">{p.streak}d</span>
+                    <span className="font-display font-bold text-sm">
+                      {p.streak}d
+                    </span>
                   </div>
 
                   <div
@@ -333,9 +383,14 @@ export function LeaderboardScreen() {
                       {p.score.toLocaleString()} pts
                     </span>
                   </div>
-                  <div className="flex items-center gap-1" style={{ color: "#22C55E" }}>
+                  <div
+                    className="flex items-center gap-1"
+                    style={{ color: "#22C55E" }}
+                  >
                     <Flame size={11} />
-                    <span className="font-display font-bold text-sm">{p.streak}d streak</span>
+                    <span className="font-display font-bold text-sm">
+                      {p.streak}d streak
+                    </span>
                   </div>
                 </div>
               </motion.div>

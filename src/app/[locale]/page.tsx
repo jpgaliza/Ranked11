@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getManifestEntries } from "@/lib/categories/registry";
-import { getCategoryDifficulty, getCategoryTag } from "@/lib/view-models/category-display";
+import { getCategoryDifficulty } from "@/lib/view-models/category-display";
 import { HomePage } from "@/components/home/home-page";
 
 export async function generateMetadata({
@@ -31,7 +31,7 @@ export default async function Page({
       title: t(`${entry.i18nKey}.title`),
       description: t(`${entry.i18nKey}.description`),
       difficulty: getCategoryDifficulty(entry.type),
-      tag: getCategoryTag(entry.type),
+      type: entry.type,
     }));
 
   const fallback = getManifestEntries()
@@ -41,7 +41,7 @@ export default async function Page({
       title: t(`${entry.i18nKey}.title`),
       description: t(`${entry.i18nKey}.description`),
       difficulty: getCategoryDifficulty(entry.type),
-      tag: getCategoryTag(entry.type),
+      type: entry.type,
     }));
 
   return <HomePage featured={featured.length >= 4 ? featured : fallback} />;

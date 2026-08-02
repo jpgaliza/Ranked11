@@ -3,7 +3,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getManifestEntries } from "@/lib/categories/registry";
 import {
   getCategoryDifficulty,
-  getCategoryTag,
 } from "@/lib/view-models/category-display";
 import { CategoriesPageClient } from "@/components/categories/categories-page-client";
 
@@ -31,7 +30,7 @@ export default async function CategoriesPage({
     title: t(`${entry.i18nKey}.title`),
     description: t(`${entry.i18nKey}.description`),
     difficulty: getCategoryDifficulty(entry.type),
-    tag: getCategoryTag(entry.type),
+    type: entry.type,
   }));
 
   return <CategoriesPageClient categories={categories} />;

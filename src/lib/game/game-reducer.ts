@@ -75,6 +75,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const item = findItemInState(state, itemId);
       if (!item) return state;
 
+      const sourceSlotIndex = state.slots.findIndex((slot) => slot?.id === itemId);
       const displaced = state.slots[slotIndex];
       let newSlots = removeItemFromSlots(state.slots, itemId);
       newSlots = [...newSlots];
@@ -82,7 +83,11 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
 
       let newPool = state.pool.filter((p) => p.id !== itemId);
       if (displaced && displaced.id !== itemId) {
-        newPool = [...newPool, displaced];
+        if (sourceSlotIndex >= 0) {
+          newSlots[sourceSlotIndex] = displaced;
+        } else {
+          newPool = [...newPool, displaced];
+        }
       }
 
       return {

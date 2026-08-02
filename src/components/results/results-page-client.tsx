@@ -32,7 +32,14 @@ export function ResultsPageClient({
 
   if (mode === "daily") {
     const totalScore = payload?.scoreResult?.totalScore ?? urlScore;
-    return <DailyChallengeResults totalScore={totalScore} />;
+    return (
+      <DailyChallengeResults
+        totalScore={totalScore}
+        payload={payload}
+        category={category}
+        categoryTitle={categoryTitle}
+      />
+    );
   }
 
   if (category && categoryTitle && payload) {
