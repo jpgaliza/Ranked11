@@ -2,7 +2,7 @@
   "id": "teams-most-titles",
   "type": "team",
   "i18nKey": "categories.teamsMostTitles",
-  "correctOrder": ["brazil", "germany", "italy", "argentina", "france", "uruguay", "england", "spain", "croatia", "netherlands"],
+  "correctOrder": ["brazil", "germany", "italy", "argentina", "france", "uruguay", "spain", "england", "croatia", "netherlands"],
   "items": {
     "brazil": { "id": "brazil", "statValue": 5, "metadata": { "countryCode": "BR" } },
     "germany": { "id": "germany", "statValue": 4, "metadata": { "countryCode": "DE" } },
@@ -10,8 +10,8 @@
     "argentina": { "id": "argentina", "statValue": 3, "metadata": { "countryCode": "AR" } },
     "france": { "id": "france", "statValue": 2, "metadata": { "countryCode": "FR" } },
     "uruguay": { "id": "uruguay", "statValue": 2, "metadata": { "countryCode": "UY" } },
+    "spain": { "id": "spain", "statValue": 2, "metadata": { "countryCode": "ES" } },
     "england": { "id": "england", "statValue": 1, "metadata": { "countryCode": "GB" } },
-    "spain": { "id": "spain", "statValue": 1, "metadata": { "countryCode": "ES" } },
     "croatia": { "id": "croatia", "statValue": 0, "metadata": { "countryCode": "HR" } },
     "netherlands": { "id": "netherlands", "statValue": 0, "metadata": { "countryCode": "NL" } }
   }

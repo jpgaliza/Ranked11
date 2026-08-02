@@ -1,18 +1,10 @@
-import type { CategoryDefinition, CategoryManifestEntry, RankedItem } from "@/types/category";
-
-const COUNTRY_FLAGS: Record<string, string> = {
-  BR: "🇧🇷", DE: "🇩🇪", IT: "🇮🇹", AR: "🇦🇷", FR: "🇫🇷", UY: "🇺🇾",
-  GB: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", ES: "🇪🇸", HR: "🇭🇷", NL: "🇳🇱", MX: "🇲🇽", BE: "🇧🇪",
-  HU: "🇭🇺", CZ: "🇨🇿", SE: "🇸🇪", CM: "🇨🇲", ZA: "🇿🇦", HN: "🇭🇳",
-  NZ: "🇳🇿", QA: "🇶🇦", CN: "🇨🇳", HT: "🇭🇹", CA: "🇨🇦", CH: "🇨🇭",
-  PT: "🇵🇹", IE: "🇮🇪", CO: "🇨🇴", JP: "🇯🇵", US: "🇺🇸", RU: "🇷🇺",
-};
+import type { CategoryDefinition, CategoryManifestEntry, CategoryType, RankedItem } from "@/types/category";
 
 export interface RankingItemDisplay {
   id: string;
   name: string;
   subtitle: string;
-  flag?: string;
+  countryCode?: string;
   statValue?: number;
 }
 
@@ -24,6 +16,14 @@ const TYPE_TAGS: Record<string, string> = {
   tournament: "Tournament",
 };
 
+const TYPE_COLORS: Record<CategoryType, string> = {
+  team: "#38BDF8",
+  country: "#60A5FA",
+  player: "#3B82F6",
+  tournament: "#2563EB",
+  coach: "#1E40AF",
+};
+
 const DIFFICULTY_MAP: Record<string, "Easy" | "Medium" | "Hard"> = {
   team: "Easy",
   country: "Easy",
@@ -32,23 +32,17 @@ const DIFFICULTY_MAP: Record<string, "Easy" | "Medium" | "Hard"> = {
   coach: "Hard",
 };
 
-export function getCountryFlag(countryCode?: string): string | undefined {
-  if (!countryCode) return undefined;
-  return COUNTRY_FLAGS[countryCode.toUpperCase()];
-}
-
 export function toRankingItemDisplay(
   item: RankedItem,
   getName: (id: string) => string,
   categoryType: CategoryDefinition["type"],
   showStat = false,
 ): RankingItemDisplay {
-  const flag = getCountryFlag(item.metadata?.countryCode);
   return {
     id: item.id,
     name: getName(item.id),
     subtitle: TYPE_TAGS[categoryType] ?? categoryType,
-    flag,
+    countryCode: item.metadata?.countryCode?.toUpperCase(),
     statValue: showStat ? item.statValue : undefined,
   };
 }
@@ -85,4 +79,8 @@ export function getCategoryDifficulty(type: CategoryDefinition["type"]): "Easy" 
 
 export function getCategoryTag(type: CategoryDefinition["type"]): string {
   return TYPE_TAGS[type] ?? "World Cup";
+}
+
+export function getCategoryTypeColor(type: CategoryType): string {
+  return TYPE_COLORS[type] ?? "#3B82F6";
 }

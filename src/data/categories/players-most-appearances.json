@@ -2,17 +2,17 @@
   "id": "players-most-appearances",
   "type": "player",
   "i18nKey": "categories.playersMostAppearances",
-  "correctOrder": ["lothar-matthaus", "mexico-antonio-carbajal", "gianluigi-buffon", "mexico-rafael-marquez", "mexico-andres-guardado", "cristiano-ronaldo", "lionel-messi", "mexico-javier-hernandez", "mexico-guillermo-ochoa", "mexico-hirving-lozano"],
+  "correctOrder": ["lionel-messi", "lothar-matthaus", "cristiano-ronaldo", "miroslav-klose", "paolo-maldini", "mexico-antonio-carbajal", "mexico-rafael-marquez", "mexico-andres-guardado", "gianluigi-buffon", "luka-modric"],
   "items": {
+    "lionel-messi": { "id": "lionel-messi", "statValue": 34, "metadata": { "countryCode": "AR" } },
     "lothar-matthaus": { "id": "lothar-matthaus", "statValue": 25, "metadata": { "countryCode": "DE" } },
-    "mexico-antonio-carbajal": { "id": "mexico-antonio-carbajal", "statValue": 25, "metadata": { "countryCode": "MX" } },
-    "gianluigi-buffon": { "id": "gianluigi-buffon", "statValue": 17, "metadata": { "countryCode": "IT" } },
+    "cristiano-ronaldo": { "id": "cristiano-ronaldo", "statValue": 25, "metadata": { "countryCode": "PT" } },
+    "miroslav-klose": { "id": "miroslav-klose", "statValue": 24, "metadata": { "countryCode": "DE" } },
+    "paolo-maldini": { "id": "paolo-maldini", "statValue": 23, "metadata": { "countryCode": "IT" } },
+    "mexico-antonio-carbajal": { "id": "mexico-antonio-carbajal", "statValue": 11, "metadata": { "countryCode": "MX" } },
     "mexico-rafael-marquez": { "id": "mexico-rafael-marquez", "statValue": 19, "metadata": { "countryCode": "MX" } },
     "mexico-andres-guardado": { "id": "mexico-andres-guardado", "statValue": 18, "metadata": { "countryCode": "MX" } },
-    "cristiano-ronaldo": { "id": "cristiano-ronaldo", "statValue": 22, "metadata": { "countryCode": "PT" } },
-    "lionel-messi": { "id": "lionel-messi", "statValue": 26, "metadata": { "countryCode": "AR" } },
-    "mexico-javier-hernandez": { "id": "mexico-javier-hernandez", "statValue": 12, "metadata": { "countryCode": "MX" } },
-    "mexico-guillermo-ochoa": { "id": "mexico-guillermo-ochoa", "statValue": 13, "metadata": { "countryCode": "MX" } },
-    "mexico-hirving-lozano": { "id": "mexico-hirving-lozano", "statValue": 12, "metadata": { "countryCode": "MX" } }
+    "gianluigi-buffon": { "id": "gianluigi-buffon", "statValue": 14, "metadata": { "countryCode": "IT" } },
+    "luka-modric": { "id": "luka-modric", "statValue": 22, "metadata": { "countryCode": "HR" } }
   }
 }

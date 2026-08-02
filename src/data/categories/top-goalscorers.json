@@ -2,17 +2,28 @@
   "id": "top-goalscorers",
   "type": "player",
   "i18nKey": "categories.topGoalscorers",
-  "correctOrder": ["miroslav-klosse", "ronaldo", "germany-muller", "just-fontaine", "pele", "jurgen-klinsmann", "gabor-kiraly", "sandor-kocsis", "thomas-muller", "gabriel-batistuta"],
+  "correctOrder": [
+    "kylian-mbappe",
+    "lionel-messi",
+    "miroslav-klosse",
+    "ronaldo",
+    "germany-muller",
+    "harry-kane",
+    "just-fontaine",
+    "pele",
+    "sandor-kocsis",
+    "jurgen-klinsmann"
+  ],
   "items": {
+    "kylian-mbappe": { "id": "kylian-mbappe", "statValue": 22, "metadata": { "countryCode": "FR" } },
+    "lionel-messi": { "id": "lionel-messi", "statValue": 21, "metadata": { "countryCode": "AR" } },
     "miroslav-klosse": { "id": "miroslav-klosse", "statValue": 16, "metadata": { "countryCode": "DE" } },
     "ronaldo": { "id": "ronaldo", "statValue": 15, "metadata": { "countryCode": "BR" } },
     "germany-muller": { "id": "germany-muller", "statValue": 14, "metadata": { "countryCode": "DE" } },
-    "pele": { "id": "pele", "statValue": 12, "metadata": { "countryCode": "BR" } },
-    "jurgen-klinsmann": { "id": "jurgen-klinsmann", "statValue": 11, "metadata": { "countryCode": "DE" } },
-    "gabor-kiraly": { "id": "gabor-kiraly", "statValue": 11, "metadata": { "countryCode": "HU" } },
-    "thomas-muller": { "id": "thomas-muller", "statValue": 10, "metadata": { "countryCode": "DE" } },
+    "harry-kane": { "id": "harry-kane", "statValue": 14, "metadata": { "countryCode": "GB" } },
     "just-fontaine": { "id": "just-fontaine", "statValue": 13, "metadata": { "countryCode": "FR" } },
+    "pele": { "id": "pele", "statValue": 12, "metadata": { "countryCode": "BR" } },
     "sandor-kocsis": { "id": "sandor-kocsis", "statValue": 11, "metadata": { "countryCode": "HU" } },
-    "gabriel-batistuta": { "id": "gabriel-batistuta", "statValue": 10, "metadata": { "countryCode": "AR" } }
+    "jurgen-klinsmann": { "id": "jurgen-klinsmann", "statValue": 11, "metadata": { "countryCode": "DE" } }
   }
 }

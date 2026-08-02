@@ -2,17 +2,17 @@
   "id": "teams-most-matches",
   "type": "team",
   "i18nKey": "categories.teamsMostMatches",
-  "correctOrder": ["germany", "brazil", "argentina", "italy", "mexico", "france", "england", "spain", "netherlands", "uruguay"],
+  "correctOrder": ["brazil", "germany", "argentina", "italy", "france", "england", "spain", "mexico", "netherlands", "uruguay"],
   "items": {
-    "germany": { "id": "germany", "statValue": 112, "metadata": { "countryCode": "DE" } },
-    "brazil": { "id": "brazil", "statValue": 114, "metadata": { "countryCode": "BR" } },
-    "argentina": { "id": "argentina", "statValue": 88, "metadata": { "countryCode": "AR" } },
+    "brazil": { "id": "brazil", "statValue": 119, "metadata": { "countryCode": "BR" } },
+    "germany": { "id": "germany", "statValue": 116, "metadata": { "countryCode": "DE" } },
+    "argentina": { "id": "argentina", "statValue": 96, "metadata": { "countryCode": "AR" } },
     "italy": { "id": "italy", "statValue": 83, "metadata": { "countryCode": "IT" } },
-    "mexico": { "id": "mexico", "statValue": 60, "metadata": { "countryCode": "MX" } },
-    "france": { "id": "france", "statValue": 73, "metadata": { "countryCode": "FR" } },
-    "england": { "id": "england", "statValue": 74, "metadata": { "countryCode": "GB" } },
-    "spain": { "id": "spain", "statValue": 67, "metadata": { "countryCode": "ES" } },
-    "netherlands": { "id": "netherlands", "statValue": 54, "metadata": { "countryCode": "NL" } },
-    "uruguay": { "id": "uruguay", "statValue": 59, "metadata": { "countryCode": "UY" } }
+    "france": { "id": "france", "statValue": 81, "metadata": { "countryCode": "FR" } },
+    "england": { "id": "england", "statValue": 79, "metadata": { "countryCode": "GB" } },
+    "spain": { "id": "spain", "statValue": 72, "metadata": { "countryCode": "ES" } },
+    "mexico": { "id": "mexico", "statValue": 64, "metadata": { "countryCode": "MX" } },
+    "netherlands": { "id": "netherlands", "statValue": 59, "metadata": { "countryCode": "NL" } },
+    "uruguay": { "id": "uruguay", "statValue": 62, "metadata": { "countryCode": "UY" } }
   }
 }

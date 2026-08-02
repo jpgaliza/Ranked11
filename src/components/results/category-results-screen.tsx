@@ -17,15 +17,13 @@ import { Link } from "@/i18n/navigation";
 import { useIsDark } from "@/hooks/use-is-dark";
 import type { CategoryDefinition } from "@/types/category";
 import type { ResultPayload } from "@/lib/storage/result-payload-store";
-import { toRankingItemDisplay } from "@/lib/view-models/category-display";
 import { formatScore } from "@/lib/utils/format-score";
-
-const SCORE_GRADES = [
-  { min: 95, key: "perfectMsg", color: "#D4AF37", emoji: "🏆", bgClass: "from-yellow-400 to-amber-600" },
-  { min: 75, key: "greatMsg", color: "#22C55E", emoji: "🌟", bgClass: "from-green-400 to-green-600" },
-  { min: 50, key: "goodMsg", color: "#3B82F6", emoji: "⚡", bgClass: "from-blue-400 to-blue-600" },
-  { min: 0, key: "keepMsg", color: "#94A3B8", emoji: "💪", bgClass: "from-slate-400 to-slate-600" },
-] as const;
+import { buildShareResultRows } from "@/lib/share/build-share-result-rows";
+import { getScoreGrade } from "@/lib/share/score-grades";
+import { ShareResultCard } from "@/components/results/share/share-result-card";
+import { ShareImagePreviewDialog } from "@/components/results/share/share-image-preview-dialog";
+import { ResultsRankingComparison } from "@/components/results/results-ranking-comparison";
+import { useShareResultImage } from "@/hooks/use-share-result-image";
 
 interface CategoryResultsScreenProps {
   category: CategoryDefinition;
@@ -48,12 +46,21 @@ export function CategoryResultsScreen({
   const scoreResult = payload.scoreResult;
   const totalScore = scoreResult?.totalScore ?? urlScore;
   const maxScore = scoreResult?.maxScore ?? 100;
-  const grade = SCORE_GRADES.find((g) => totalScore >= g.min)!;
+  const grade = getScoreGrade(totalScore);
+  const gradeBgClass =
+    totalScore >= 95
+      ? "from-yellow-400 to-amber-600"
+      : totalScore >= 75
+        ? "from-green-400 to-green-600"
+        : totalScore >= 50
+          ? "from-blue-400 to-blue-600"
+          : "from-slate-400 to-slate-600";
   const correctCount =
     scoreResult?.itemScores.filter((i) => i.difference === 0).length ?? 0;
   const wrongCount = 10 - correctCount;
 
-  const getName = (id: string) => (tItems.has(id) ? tItems(id) : id.replace(/-/g, " "));
+  const getName = (id: string) =>
+    tItems.has(id) ? tItems(id) : id.replace(/-/g, " ");
 
   useEffect(() => {
     if (hasRun.current) return;
@@ -72,20 +79,63 @@ export function CategoryResultsScreen({
     }
   }, [totalScore]);
 
-  const handleShare = () => {
-    const text = `🏆 Ranked11 - ${categoryTitle}\nMy score: ${formatScore(totalScore)}/100\nPlay at ranked11.app`;
-    if (navigator.share) {
-      navigator.share({ title: "Ranked11", text }).catch(() => {});
-    } else {
-      navigator.clipboard?.writeText(text);
+  const playerOrder = payload.playerOrder;
+  const correctOrder = category.correctOrder;
+  const {
+    shareCardRef,
+    isGenerating,
+    previewOpen,
+    previewImageUrl,
+    generatePreview,
+    closePreview,
+    downloadPreview,
+  } = useShareResultImage();
+
+  const shareRows = buildShareResultRows(category, playerOrder, getName);
+  const shareLabels = {
+    dailyChallenge: t("dailyTitle"),
+    yourRanking: t("yourRanking"),
+    correctAnswer: t("correct"),
+    position: t("position").toUpperCase(),
+    correct: t("correctLabel"),
+    wrong: t("wrongLabel"),
+    totalScore: t("totalScore"),
+    yourRankToday: t("yourRankToday"),
+  };
+
+  const handleShare = async () => {
+    const success = await generatePreview({
+      mode: "category",
+      totalScore,
+    });
+
+    if (!success) {
+      window.alert(t("shareFailed"));
     }
   };
 
-  const playerOrder = payload.playerOrder;
-  const correctOrder = category.correctOrder;
-
   return (
     <div className="min-h-[calc(100dvh-4rem)] pb-12">
+      <div
+        aria-hidden
+        className="pointer-events-none fixed left-[-9999px] top-0"
+      >
+        <ShareResultCard
+          ref={shareCardRef}
+          mode="category"
+          categoryTitle={categoryTitle}
+          gradeMessage={t(grade.key)}
+          gradeColor={grade.color}
+          gradeEmoji={grade.emoji}
+          totalScore={totalScore}
+          maxScore={maxScore}
+          correctCount={correctCount}
+          wrongCount={wrongCount}
+          rows={shareRows}
+          labels={shareLabels}
+        />
+      </div>
+
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -94,10 +144,12 @@ export function CategoryResultsScreen({
           className="relative overflow-hidden rounded-3xl border mb-8"
           style={{
             borderColor: `${grade.color}40`,
-            background: isDark ? "rgba(15,23,42,0.95)" : "rgba(255,255,255,0.97)",
+            background: isDark
+              ? "rgba(15,23,42,0.95)"
+              : "rgba(255,255,255,0.97)",
           }}
         >
-          <div className={`h-2 w-full bg-gradient-to-r ${grade.bgClass}`} />
+          <div className={`h-2 w-full bg-gradient-to-r ${gradeBgClass}`} />
           <div className="p-8 text-center">
             <div className="text-5xl mb-3">{grade.emoji}</div>
             <div
@@ -114,7 +166,9 @@ export function CategoryResultsScreen({
                   cy="60"
                   r="52"
                   fill="none"
-                  stroke={isDark ? "rgba(30,41,59,0.8)" : "rgba(226,232,240,0.8)"}
+                  stroke={
+                    isDark ? "rgba(30,41,59,0.8)" : "rgba(226,232,240,0.8)"
+                  }
                   strokeWidth="8"
                 />
                 <motion.circle
@@ -128,7 +182,8 @@ export function CategoryResultsScreen({
                   strokeDasharray={`${2 * Math.PI * 52}`}
                   initial={{ strokeDashoffset: 2 * Math.PI * 52 }}
                   animate={{
-                    strokeDashoffset: 2 * Math.PI * 52 * (1 - totalScore / maxScore),
+                    strokeDashoffset:
+                      2 * Math.PI * 52 * (1 - totalScore / maxScore),
                   }}
                   transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
                 />
@@ -158,131 +213,12 @@ export function CategoryResultsScreen({
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="rounded-2xl border border-border overflow-hidden mb-6"
-          style={{
-            background: isDark ? "rgba(15,23,42,0.85)" : "rgba(255,255,255,0.95)",
-          }}
-        >
-          <div
-            className="grid grid-cols-3 px-4 py-3 border-b border-border"
-            style={{
-              background: isDark ? "rgba(30,41,59,0.6)" : "rgba(241,245,249,0.8)",
-            }}
-          >
-            {[
-              { key: "position" as const },
-              { key: "yourRanking" as const },
-              { key: "correct" as const },
-            ].map(({ key }) => (
-              <div
-                key={key}
-                className="font-display font-bold text-xs tracking-widest"
-                style={{ color: isDark ? "#64748B" : "#94A3B8" }}
-              >
-                {t(key).toUpperCase()}
-              </div>
-            ))}
-          </div>
-
-          {correctOrder.map((correctId, i) => {
-            const correctItem = category.items[correctId]!;
-            const correctDisplay = toRankingItemDisplay(
-              correctItem,
-              getName,
-              category.type,
-              true,
-            );
-            const playerId = playerOrder[i];
-            const playerItem = playerId ? category.items[playerId] : null;
-            const playerDisplay = playerItem
-              ? toRankingItemDisplay(playerItem, getName, category.type, true)
-              : null;
-            const isRight = playerId === correctId;
-
-            return (
-              <motion.div
-                key={correctId}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + i * 0.05 }}
-                className="grid grid-cols-3 items-center px-4 py-3 border-b border-border last:border-0 gap-2"
-                style={{
-                  background: isRight
-                    ? isDark
-                      ? "rgba(34,197,94,0.06)"
-                      : "rgba(34,197,94,0.04)"
-                    : "transparent",
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <div
-                    className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-black shrink-0 font-display"
-                    style={{
-                      background: isRight ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.15)",
-                      color: isRight ? "#22C55E" : "#EF4444",
-                    }}
-                  >
-                    {i + 1}
-                  </div>
-                  {isRight ? (
-                    <CheckCircle size={14} style={{ color: "#22C55E" }} />
-                  ) : (
-                    <XCircle size={14} style={{ color: "#EF4444" }} />
-                  )}
-                </div>
-
-                <div className="min-w-0">
-                  {playerDisplay ? (
-                    <>
-                      <div
-                        className="truncate font-display font-bold text-sm"
-                        style={{ color: isRight ? "#22C55E" : "#EF4444" }}
-                      >
-                        {playerDisplay.flag} {playerDisplay.name}
-                      </div>
-                      <div
-                        className="text-[0.65rem]"
-                        style={{ color: isDark ? "#475569" : "#94A3B8" }}
-                      >
-                        {playerDisplay.subtitle}
-                        {playerDisplay.statValue !== undefined &&
-                          ` · ${playerDisplay.statValue}`}
-                      </div>
-                    </>
-                  ) : (
-                    <span
-                      className="text-sm italic"
-                      style={{ color: isDark ? "#475569" : "#CBD5E1" }}
-                    >
-                      —
-                    </span>
-                  )}
-                </div>
-
-                <div className="min-w-0">
-                  <div
-                    className="truncate font-display font-bold text-sm"
-                    style={{ color: isDark ? "#F8FAFC" : "#0F172A" }}
-                  >
-                    {correctDisplay.flag} {correctDisplay.name}
-                  </div>
-                  <div
-                    className="text-[0.65rem]"
-                    style={{ color: isDark ? "#475569" : "#94A3B8" }}
-                  >
-                    {correctDisplay.subtitle}
-                    {correctDisplay.statValue !== undefined &&
-                      ` · ${correctDisplay.statValue}`}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        <ResultsRankingComparison
+          category={category}
+          playerOrder={playerOrder}
+          getName={getName}
+          animationDelay={0.3}
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -302,19 +238,41 @@ export function CategoryResultsScreen({
           </div>
           <div className="grid grid-cols-3 gap-3">
             {[
-              { icon: CheckCircle, val: correctCount, label: t("correctLabel"), color: "#22C55E" },
-              { icon: XCircle, val: wrongCount, label: t("wrongLabel"), color: "#EF4444" },
-              { icon: Zap, val: formatScore(totalScore), label: t("totalScore"), color: "#D4AF37" },
+              {
+                icon: CheckCircle,
+                val: correctCount,
+                label: t("correctLabel"),
+                color: "#22C55E",
+              },
+              {
+                icon: XCircle,
+                val: wrongCount,
+                label: t("wrongLabel"),
+                color: "#EF4444",
+              },
+              {
+                icon: Zap,
+                val: formatScore(totalScore),
+                label: t("totalScore"),
+                color: "#D4AF37",
+              },
             ].map(({ icon: Icon, val, label, color }) => (
               <div
                 key={label}
                 className="rounded-xl p-3 text-center border border-border"
                 style={{
-                  background: isDark ? "rgba(30,41,59,0.5)" : "rgba(241,245,249,0.7)",
+                  background: isDark
+                    ? "rgba(30,41,59,0.5)"
+                    : "rgba(241,245,249,0.7)",
                 }}
               >
                 <Icon size={18} style={{ color, margin: "0 auto 4px" }} />
-                <div className="font-display font-black text-2xl" style={{ color: val === formatScore(totalScore) ? color : color }}>
+                <div
+                  className="font-display font-black text-2xl"
+                  style={{
+                    color: val === formatScore(totalScore) ? color : color,
+                  }}
+                >
                   {val}
                 </div>
                 <div
@@ -344,14 +302,17 @@ export function CategoryResultsScreen({
           <button
             type="button"
             onClick={handleShare}
-            className="flex-1 py-3.5 rounded-xl flex items-center justify-center gap-2 border transition-all font-display font-bold tracking-wider"
+            disabled={isGenerating}
+            className="flex-1 py-3.5 rounded-xl flex items-center justify-center gap-2 border transition-all font-display font-bold tracking-wider disabled:opacity-60 disabled:cursor-not-allowed"
             style={{
               borderColor: "rgba(212,175,55,0.4)",
               background: "rgba(212,175,55,0.1)",
               color: "#D4AF37",
+              cursor: isGenerating ? "not-allowed" : "pointer",
             }}
           >
-            <Share2 size={16} /> {t("share")}
+            <Share2 size={16} />{" "}
+            {isGenerating ? t("shareGenerating") : t("share")}
           </button>
           <Link
             href="/"
@@ -364,6 +325,13 @@ export function CategoryResultsScreen({
             <Home size={16} /> {t("home")}
           </Link>
         </motion.div>
+
+        <ShareImagePreviewDialog
+          open={previewOpen}
+          imageUrl={previewImageUrl}
+          onClose={closePreview}
+          onDownload={downloadPreview}
+        />
       </div>
     </div>
   );

@@ -2,17 +2,17 @@
   "id": "teams-most-appearances",
   "type": "team",
   "i18nKey": "categories.teamsMostAppearances",
-  "correctOrder": ["brazil", "germany", "argentina", "italy", "mexico", "france", "spain", "england", "belgium", "uruguay"],
+  "correctOrder": ["brazil", "germany", "argentina", "mexico", "italy", "france", "spain", "england", "belgium", "uruguay"],
   "items": {
-    "brazil": { "id": "brazil", "statValue": 22, "metadata": { "countryCode": "BR" } },
-    "germany": { "id": "germany", "statValue": 20, "metadata": { "countryCode": "DE" } },
-    "argentina": { "id": "argentina", "statValue": 18, "metadata": { "countryCode": "AR" } },
+    "brazil": { "id": "brazil", "statValue": 23, "metadata": { "countryCode": "BR" } },
+    "germany": { "id": "germany", "statValue": 21, "metadata": { "countryCode": "DE" } },
+    "argentina": { "id": "argentina", "statValue": 19, "metadata": { "countryCode": "AR" } },
+    "mexico": { "id": "mexico", "statValue": 18, "metadata": { "countryCode": "MX" } },
     "italy": { "id": "italy", "statValue": 18, "metadata": { "countryCode": "IT" } },
-    "mexico": { "id": "mexico", "statValue": 17, "metadata": { "countryCode": "MX" } },
-    "france": { "id": "france", "statValue": 16, "metadata": { "countryCode": "FR" } },
-    "spain": { "id": "spain", "statValue": 16, "metadata": { "countryCode": "ES" } },
-    "england": { "id": "england", "statValue": 16, "metadata": { "countryCode": "GB" } },
-    "belgium": { "id": "belgium", "statValue": 14, "metadata": { "countryCode": "BE" } },
-    "uruguay": { "id": "uruguay", "statValue": 14, "metadata": { "countryCode": "UY" } }
+    "france": { "id": "france", "statValue": 17, "metadata": { "countryCode": "FR" } },
+    "spain": { "id": "spain", "statValue": 17, "metadata": { "countryCode": "ES" } },
+    "england": { "id": "england", "statValue": 17, "metadata": { "countryCode": "GB" } },
+    "belgium": { "id": "belgium", "statValue": 15, "metadata": { "countryCode": "BE" } },
+    "uruguay": { "id": "uruguay", "statValue": 15, "metadata": { "countryCode": "UY" } }
   }
 }

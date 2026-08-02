@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LeaderboardScreen } from "@/components/leaderboard/leaderboard-screen";
 
@@ -19,5 +20,11 @@ export default async function LeaderboardPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
-  return <LeaderboardScreen />;
+  const showLeaderboardPage = false;
+
+  if (showLeaderboardPage) {
+    return <LeaderboardScreen />;
+  }
+
+  notFound();
 }

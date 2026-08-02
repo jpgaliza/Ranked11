@@ -6,13 +6,15 @@ import { Search, ChevronRight, Filter } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useIsDark } from "@/hooks/use-is-dark";
+import { getCategoryTypeColor } from "@/lib/view-models/category-display";
+import type { CategoryType } from "@/types/category";
 
 export interface CategoryCardData {
   id: string;
   title: string;
   description: string;
   difficulty: "Easy" | "Medium" | "Hard";
-  tag: string;
+  type: CategoryType;
 }
 
 interface CategoriesPageClientProps {
@@ -95,7 +97,7 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
                     color: diffFilter === d ? "#D4AF37" : muted,
                   }}
                 >
-                  {d === "All" ? t("all") : d}
+                  {d === "All" ? t("all") : t(`difficultyLabels.${d}`)}
                 </button>
               ))}
             </div>
@@ -107,7 +109,9 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {filtered.map((cat, i) => (
+          {filtered.map((cat, i) => {
+            const typeColor = getCategoryTypeColor(cat.type);
+            return (
             <motion.div
               key={cat.id}
               initial={{ opacity: 0, y: 20 }}
@@ -120,24 +124,22 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
                 style={{ background: isDark ? "rgba(15,23,42,0.85)" : "rgba(255,255,255,0.95)" }}
               >
                 <div className="p-5 flex-1">
-                  <div className="flex items-start justify-end mb-4">
-                    <div className="flex flex-col items-end gap-1.5">
-                      <span
-                        className="px-2 py-0.5 rounded-full text-xs font-bold font-display tracking-wider"
-                        style={{
-                          background: `${DIFF_COLORS[cat.difficulty]}20`,
-                          color: DIFF_COLORS[cat.difficulty],
-                        }}
-                      >
-                        {cat.difficulty}
-                      </span>
-                      <span
-                        className="px-2 py-0.5 rounded-full text-xs border font-display tracking-wider"
-                        style={{ borderColor: "var(--border)", color: muted, fontSize: "0.65rem" }}
-                      >
-                        {cat.tag}
-                      </span>
-                    </div>
+                  <div className="mb-3 flex items-center gap-1.5">
+                    <span
+                      className="px-2 py-0.5 rounded-full text-xs font-bold font-display tracking-wider"
+                      style={{
+                        background: `${DIFF_COLORS[cat.difficulty]}20`,
+                        color: DIFF_COLORS[cat.difficulty],
+                      }}
+                    >
+                      {t(`difficultyLabels.${cat.difficulty}`)}
+                    </span>
+                    <span
+                      className="rounded-full border bg-transparent px-2 py-0.5 text-xs font-display font-semibold tracking-wider"
+                      style={{ borderColor: typeColor, color: typeColor, fontSize: "0.65rem" }}
+                    >
+                      {t(`typeLabels.${cat.type}`)}
+                    </span>
                   </div>
                   <h3 className="mb-2 font-display font-bold leading-snug" style={{ color: fg }}>
                     {cat.title}
@@ -169,7 +171,8 @@ export function CategoriesPageClient({ categories }: CategoriesPageClientProps) 
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
 
         {filtered.length === 0 && (

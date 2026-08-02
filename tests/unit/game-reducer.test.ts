@@ -29,7 +29,7 @@ describe("gameReducer", () => {
     expect(next.pool).toHaveLength(9);
   });
 
-  it("displaces existing item when slot occupied", () => {
+  it("displaces existing item to pool when assigning from pool", () => {
     let state = createState();
     state = gameReducer(state, {
       type: "ASSIGN_TO_SLOT",
@@ -41,6 +41,25 @@ describe("gameReducer", () => {
     });
     expect(state.slots[0]?.id).toBe("item-1");
     expect(state.pool.some((p) => p.id === "item-0")).toBe(true);
+  });
+
+  it("swaps items when assigning from one slot to another occupied slot", () => {
+    let state = createState();
+    state = gameReducer(state, {
+      type: "ASSIGN_TO_SLOT",
+      payload: { slotIndex: 0, itemId: "item-0" },
+    });
+    state = gameReducer(state, {
+      type: "ASSIGN_TO_SLOT",
+      payload: { slotIndex: 1, itemId: "item-1" },
+    });
+    state = gameReducer(state, {
+      type: "ASSIGN_TO_SLOT",
+      payload: { slotIndex: 1, itemId: "item-0" },
+    });
+    expect(state.slots[0]?.id).toBe("item-1");
+    expect(state.slots[1]?.id).toBe("item-0");
+    expect(state.pool).toHaveLength(8);
   });
 
   it("removes item from slot to pool", () => {
